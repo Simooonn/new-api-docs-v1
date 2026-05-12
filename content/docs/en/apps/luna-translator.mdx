@@ -1,12 +1,12 @@
 ---
-title: LunaTranslator - Open-source GalGame Translator
-description: LunaTranslator setup guide — open-source GalGame and visual novel translator with HOOK, OCR, and AI-powered translation. Integrate with New API for enhanced accuracy.
+title: LunaTranslator - Open Source GalGame Translator
+description: LunaTranslator Tutorial — An open-source GalGame / visual novel translator that supports HOOK, OCR, and AI translation engines. Integrates with New API to improve translation quality.
 ---
 
 <Callout type="info" title="Chat Settings Options">
-  In the New API console's System Settings -> Chat Settings, you can add the
-  following shortcut option for one-click population into LunaTranslator on the
-  Token Management page:
+  In the New API
+  console's System Settings -> Chat Settings, you can add the following shortcut option for one-click population into
+  LunaTranslator from the Token Management page:
 </Callout>
 
     ```json
@@ -14,20 +14,20 @@ description: LunaTranslator setup guide — open-source GalGame and visual novel
     ```
 
 <Callout type="info">
-  LunaTranslator is an open-source and free visual novel (GalGame) translator,
-  dedicated to providing a native-level visual novel gaming experience.
+  LunaTranslator
+  is an open-source and free visual novel (GalGame) translator, dedicated to providing a native-level visual novel gaming experience.
 </Callout>
 
 - Project Address: [https://github.com/HIllya51/LunaTranslator](https://github.com/HIllya51/LunaTranslator)
-- Project Documentation: [https://docs.lunatranslator.org](https://docs.lunatranslator.org/en/README.html)
+- Project Documentation: [https://docs.lunatranslator.org/en/README.html](https://docs.lunatranslator.org/en/README.html)
 
 ## Feature Support
 
 - **HOOK** Primarily uses HOOK to extract game text, adapting to almost all common and niche visual novels.
 
-- **In-game Translation** Some games can also have translations directly embedded in-game for an immersive experience.
+- **In-game Translation** For some games, translation can be directly embedded into the game for an immersive experience.
 
-- **HOOK Emulator** For most games on NS/PSP/PSV/PS2, HOOK emulator is supported to directly read game text.
+- **HOOK Emulator** For most games on NS/PSP/PSV/PS2, HOOK emulator support allows direct reading of game text.
 
 - **OCR** Built-in high-precision OCR models, and supports many other online & offline OCR engines for flexible reading of any text.
 
@@ -39,13 +39,13 @@ description: LunaTranslator setup guide — open-source GalGame and visual novel
 
 - **Speech Recognition** On Windows 10 and Windows 11, Windows Speech Recognition can be used.
 
-## Installation
+## Installation Method
 
 Download and install from [LunaTranslator Documentation - Download & Launch & Update](https://docs.lunatranslator.org/en/README.html)
 
 ## Integrating NewAPI into LunaTranslator
 
-LunaTranslator supports integrating with locally deployed NewAPI and third-party NewAPI services built using NewAPI.
+LunaTranslator supports integration with locally deployed New API. Please use your own deployed New API, or ensure that the service provider has legitimate upstream authorization and compliance obligations for their New API service. Do not connect API addresses or keys from unknown sources to production environments.
 
 ### One-Click Configuration
 
@@ -57,7 +57,7 @@ LunaTranslator supports integrating with locally deployed NewAPI and third-party
 
     ![add_config](/assets/luna_translator/add_config.png)
 
-2.  In the **`NewAPI`** -> `Console` -> `Token Management` tab, select the token to be used in LunaTranslator, click the dropdown option next to the chat button, select `LunaTranslator`, and it will jump to LunaTranslator and automatically configure the API address and API Key.
+2.  In the **`NewAPI`** -> `Console` -> `Token Management` tab, select the token you want to use in LunaTranslator, click the dropdown option next to the chat button, choose `LunaTranslator`, and you will be redirected to LunaTranslator with the API address and API Key automatically configured.
 
     ![跳转到 LunaTranslator](/assets/luna_translator/jump_to_app.png)
 
@@ -65,11 +65,11 @@ LunaTranslator supports integrating with locally deployed NewAPI and third-party
 
     ![设置api](/assets/luna_translator/api_setting.png)
 
-4.  Click the refresh button next to the **model** dropdown box to get the NewAPI platform's model list, select or enter the model name, then click OK to save.
+4.  Click the refresh button next to the **model** dropdown to retrieve the NewAPI platform's model list, select or enter the model name, then click OK to save.
 
     ![设置模型](/assets/luna_translator/setting_model.png)
 
-5.  Check if the toggle button next to the **new_api** large model interface configuration is open; if not enabled, enable the interface to start using it.
+5.  Check if the toggle switch next to the **new_api** large model interface configuration is turned on. If not enabled, enable the interface to start using it.
 
     ![开启配置](/assets/luna_translator/open_config.png)
 
@@ -87,18 +87,18 @@ LunaTranslator supports integrating with locally deployed NewAPI and third-party
 
     ![添加 API2](/assets/luna_translator/add_api_2.png)
 
-4.  In the **newly added interface**, fill in the corresponding API address and API Key.
+4.  In the **newly added interface**, fill in the corresponding API Address and API Key.
 
     ![设置 API1](/assets/luna_translator/setting_api.png)
 
     ![设置 API2](/assets/luna_translator/setting_api2.png)
 
-5.  Click the refresh button next to the **model** dropdown box to get the NewAPI platform's model list, select or enter the model name, then click OK to save.
+5.  Click the refresh button next to the **model** dropdown to retrieve the NewAPI platform's model list, select or enter the model name, then click OK to save.
 
     ![设置 API3](/assets/luna_translator/setting_api3.png)
 
-6.  Click the toggle button next to **NewAPI** to enable the interface and start using it.
+6.  Click the toggle switch next to **NewAPI** to enable the interface and start using it.
 
     ![打开API](/assets/luna_translator/open_api.png)
 
-For more usage methods, please refer to the LunaTranslator official documentation: [LunaTranslator Documentation - Large Model Translation Interface](https://docs.lunatranslator.org/en/guochandamoxing.html)
+For more usage methods, please refer to the official LunaTranslator documentation: [LunaTranslator Documentation - Large Model Translation Interface](https://docs.lunatranslator.org/en/guochandamoxing.html)

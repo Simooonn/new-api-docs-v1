@@ -2,29 +2,35 @@
 title: Channels
 ---
 
-Here you can manage NewAPI's upstream Channels.
+import { Callout } from 'fumadocs-ui/components/callout';
 
-![Channels](/assets/guide/channel.png)
+<Callout type="warn">
+  Upstream channels must be legally owned or authorized accounts, API Keys, model services, or enterprise contracts of the deployer. Features such as load balancing, automatic failover, weighted random, and multi-key management are used for high availability and enterprise multi-account management. When using them, you should comply with upstream service terms, platform rules, and regulatory requirements.
+</Callout>
+
+Here you can manage NewAPI's upstream channels.
+
+![渠道](/assets/guide/channel.png)
 
 ## Channel Creation/Editing Page
 
-![Channel Management 1](/assets/guide/create-channel-1.png)
+![渠道管理1](/assets/guide/create-channel-1.png)
 
-![Channel Management 2](/assets/guide/create-channel-2.png)
+![渠道管理2](/assets/guide/create-channel-2.png)
 
-![Channel Management 3](/assets/guide/create-channel-3.png)
+![渠道管理3](/assets/guide/create-channel-3.png)
 
 # Parameter Override Settings Documentation
 
 ## Overview
 
-The parameter override system supports two modes: simple override mode (backward compatible) and advanced operation mode. Complex dynamic parameter adjustments can be achieved through flexible conditional judgments and operation types.
+The parameter override system supports two modes: simple override mode (backward compatible) and advanced operation mode. Through flexible conditional logic and operation types, complex dynamic parameter adjustments can be achieved. The parameter override feature can only be used for compatibility with legal upstream interface formats, enterprise network compatibility, and request normalization.
 
 ## Usage
 
 ### Simple Override Mode
 
-Backward compatible, directly specify the fields and values to be overridden, and the system will merge these fields into the original request.
+For backward compatibility, directly specify the fields and values to be overridden. The system will merge these fields into the original request.
 
 ```json
 {
@@ -36,7 +42,7 @@ Backward compatible, directly specify the fields and values to be overridden, an
 
 ### Advanced Operation Mode
 
-Define complex parameter operations through the `operations` array, supporting advanced features such as conditional judgments, array operations, string concatenation, and string normalization.
+Define complex parameter operations using the `operations` array, supporting advanced features such as conditional logic, array operations, string concatenation, and string normalization.
 
 #### Basic Structure
 
@@ -58,7 +64,7 @@ Define complex parameter operations through the `operations` array, supporting a
 
 - `mode`: Required
 - `path`: Applicable to `set` / `delete` / `append` / `prepend` / `trim_prefix` / `trim_suffix` / `ensure_prefix` / `ensure_suffix` / `trim_space` / `to_lower` / `to_upper` / `replace` / `regex_replace`
-- `value`: Commonly used in `set` / `append` / `prepend` / `trim_prefix` / `trim_suffix` / `ensure_prefix` / `ensure_suffix`
+- `value`: Commonly used with `set` / `append` / `prepend` / `trim_prefix` / `trim_suffix` / `ensure_prefix` / `ensure_suffix`
 - `from` / `to`: Applicable to `move` / `copy` / `replace` / `regex_replace`
 - `keep_origin`: Used for `set` (skips if value already exists) and for `append` / `prepend` during object merging.
 
@@ -79,7 +85,7 @@ Sets the value at the specified path.
 
 **Parameter Description:**
 
-- `keep_origin`: When `true`, if the target path already has a value, setting is skipped.
+- `keep_origin`: If `true`, setting is skipped if the target path already has a value.
 
 ### 2. delete - Delete Field
 
@@ -112,7 +118,7 @@ Appends new content after existing content.
 {
   "path": "messages.0.content",
   "mode": "append",
-  "value": "\n\n请用中文回答。"
+  "value": "\n\nPlease answer in Chinese."
 }
 ```
 
@@ -130,7 +136,7 @@ Adds new content before existing content.
 {
   "path": "messages.0.content",
   "mode": "prepend",
-  "value": "重要提示：请仔细阅读以下内容。\n\n"
+  "value": "Important Note: Please read the following carefully.\n\n"
 }
 ```
 
@@ -142,7 +148,7 @@ Adds new content before existing content.
 
 ### 6. copy - Copy Field
 
-Copies the value from the path specified by `from` to the path specified by `to` (does not delete the source field).
+Copies the value from the `from` path to the `to` path (does not delete the source field).
 
 ```json
 {
@@ -154,12 +160,12 @@ Copies the value from the path specified by `from` to the path specified by `to`
 
 **Parameter Requirements:**
 
-- `from` / `to`: Required
-- An error will be reported if the source path does not exist.
+- `from` / `to`: Required.
+- An error will occur if the source path does not exist.
 
 ### 7. trim_prefix - Trim Prefix
 
-Removes the specified prefix from a string field (if it doesn't match, it remains unchanged).
+Removes the specified prefix from a string field (remains unchanged if no match).
 
 ```json
 {
@@ -171,11 +177,11 @@ Removes the specified prefix from a string field (if it doesn't match, it remain
 
 **Parameter Requirements:**
 
-- `value`: Required
+- `value`: Required.
 
 ### 8. trim_suffix - Trim Suffix
 
-Removes the specified suffix from a string field (if it doesn't match, it remains unchanged).
+Removes the specified suffix from a string field (remains unchanged if no match).
 
 ```json
 {
@@ -187,11 +193,11 @@ Removes the specified suffix from a string field (if it doesn't match, it remain
 
 **Parameter Requirements:**
 
-- `value`: Required
+- `value`: Required.
 
 ### 9. ensure_prefix - Ensure Prefix
 
-Ensures a string field starts with the specified prefix (if it already exists, it remains unchanged).
+Ensures a string field starts with the specified prefix (remains unchanged if already present).
 
 ```json
 {
@@ -207,7 +213,7 @@ Ensures a string field starts with the specified prefix (if it already exists, i
 
 ### 10. ensure_suffix - Ensure Suffix
 
-Ensures a string field ends with the specified suffix (if it already exists, it remains unchanged).
+Ensures a string field ends with the specified suffix (remains unchanged if already present).
 
 ```json
 {
@@ -221,7 +227,7 @@ Ensures a string field ends with the specified suffix (if it already exists, it 
 
 - `value`: Required and cannot be an empty string.
 
-### 11. trim_space - Trim Leading/Trailing Whitespace
+### 11. trim_space - Trim Whitespace
 
 Performs `TrimSpace` on a string field (spaces, newlines, tabs, etc., will be removed).
 
@@ -270,11 +276,11 @@ Performs substring replacement on a string field.
 **Parameter Requirements:**
 
 - `from`: Required and cannot be an empty string.
-- `to`: Optional, equivalent to an empty string if omitted.
+- `to`: Optional; omitting it is equivalent to an empty string.
 
 ### 15. regex_replace - Regex Replace
 
-Performs regular expression matching and replacement on a string field.
+Performs regex matching and replacement on a string field.
 
 ```json
 {
@@ -288,11 +294,11 @@ Performs regular expression matching and replacement on a string field.
 **Parameter Requirements:**
 
 - `from`: Required (regular expression, Go regexp syntax).
-- `to`: Optional, equivalent to an empty string if omitted.
+- `to`: Optional; omitting it is equivalent to an empty string.
 
-## Conditional Judgment
+## Conditional Logic
 
-Set the conditions for operation execution using the `conditions` array; the corresponding operation will only be executed when the conditions are met.
+Set conditions for operation execution using the `conditions` array. The corresponding operation will only be executed if the conditions are met.
 
 ### Condition Structure
 
@@ -322,35 +328,35 @@ Set the conditions for operation execution using the `conditions` array; the cor
 - `lt`: Less than (numeric types only)
 - `lte`: Less than or equal to (numeric types only)
 
-- Note:
+Note:
 
-* Numeric comparisons can only be used for numeric types.
-* String operations (prefix, suffix, contains) will convert values to strings for comparison.
+*   Numeric comparisons are only for numeric types.
+*   String operations (prefix, suffix, contains) convert values to strings for comparison.
 
 ### Condition Parameter Description
 
-- `invert`: Invert function, `true` means negate the result.
+- `invert`: Inverts the condition. `true` means the result is negated.
 - `pass_missing_key`: Behavior when the specified path does not exist.
-  - `true`: Condition passes if path does not exist.
-  - `false`: Condition does not pass if path does not exist (default).
+  - `true`: Condition passes if the path is missing.
+  - `false`: Condition fails if the path is missing (default).
 
 ### Logical Relationship (logic)
 
 - `AND`: All conditions must be met.
-- `OR`: Any condition met is sufficient (default).
+- `OR`: Any condition can be met (default).
 
 ## Path Syntax
 
 Use JSON path syntax to access nested fields:
 
 - `temperature` - Root-level field
-- `messages.0.content` - The content field of the first element in the array.
-- `messages.-1.content` - The content field of the last element in the array.
-- `metadata.user.name` - Nested object field.
+- `messages.0.content` - Content field of the first element in the array
+- `messages.-1.content` - Content field of the last element in the array
+- `metadata.user.name` - Nested object field
 
-Additionally, `path` supports the following built-in variables (no need to explicitly exist in the request body), which can be directly used for conditional judgments:
+Additionally, `path` supports the following built-in variables (which do not need to be explicitly present in the request body) and can be directly used for conditional logic:
 
-| Variable | Meaning | Typical Use |
+| Variable | Meaning | Typical Use Case |
 | --- | --- | --- |
 | `model` / `upstream_model` | Target model after redirection | Conditional matching based on the actual upstream model called |
 | `original_model` | Target model before redirection | Conditional matching based on the original model requested by the user |
@@ -359,7 +365,7 @@ Additionally, `path` supports the following built-in variables (no need to expli
 
 ### 1. Dynamically Adjust Model Parameters
 
-Dynamically adjust the temperature parameter based on message content:
+Dynamically adjust temperature parameters based on message content:
 
 ```json
 {
@@ -405,7 +411,7 @@ Add a system message at the beginning of the message array:
       "value": [
         {
           "role": "system",
-          "content": "你是一个专业的AI助手，请始终保持礼貌和专业。"
+          "content": "You are a professional AI assistant, please always be polite and professional."
         }
       ]
     }
@@ -415,7 +421,7 @@ Add a system message at the beginning of the message array:
 
 ### 3. Adjust Parameters Based on Model Type
 
-Set different max_tokens based on different models:
+Set different max_tokens for different models:
 
 ```json
 {
@@ -450,7 +456,7 @@ Set different max_tokens based on different models:
 
 ### 4. Multiple Condition Combination (AND Logic)
 
-Execute the operation only when multiple conditions are met simultaneously:
+Execute operations only when multiple conditions are met simultaneously:
 
 ```json
 {
@@ -479,7 +485,7 @@ Execute the operation only when multiple conditions are met simultaneously:
 
 ### 5. Numeric Comparison Conditions
 
-Perform conditional judgment based on numerical size:
+Perform conditional logic based on numeric values:
 
 ```json
 {
@@ -550,7 +556,7 @@ Use `pass_missing_key` to handle potentially missing fields:
 
 ### 8. String Concatenation Example
 
-Append instructions after the user message:
+Append instructions after the user's message:
 
 ```json
 {
@@ -558,7 +564,7 @@ Append instructions after the user message:
     {
       "path": "messages.-1.content",
       "mode": "append",
-      "value": "\n\n请详细解释你的思考过程。"
+      "value": "\n\nPlease explain your thought process in detail."
     }
   ]
 }
@@ -566,4 +572,4 @@ Append instructions after the user message:
 
 ## Important Notes
 
-**Execution Order**: Operations are executed sequentially according to their order in the `operations` array; earlier operations may affect subsequent operations.
+**Execution Order**: Operations are executed sequentially according to their order in the `operations` array; earlier operations may affect subsequent ones.
