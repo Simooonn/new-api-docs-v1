@@ -93,11 +93,12 @@ git pull
 # 编译后端
 go build -o new-api
 
-# 更新并编译前端
-cd web
+# フロントエンドの更新とビルド（必要に応じて新版または旧版を選択、ここでは新版を例とします）
+# 新版フロントエンド (default)
+cd web/default
 bun install
 bun run build
-cd 说
+cd ../..
 # 重启服务
 ./new-api --port 3000
 ```
@@ -160,11 +161,18 @@ git checkout v1.x.x
 # 重新编译
 go build -o new-api
 
-# 更新并编译前端
-cd web
+# フロントエンドの更新とビルド（必要に応じて新版或者旧版を選択、ここでは新版を例とします）
+# 新版フロントエンド (default)
+cd web/default
 bun install
 bun run build
-cd ..
+cd ../..
+
+# 旧版フロントエンド (classic)
+# cd web/classic
+# bun install
+# bun run build
+# cd ../..
 
 # 重启服务
 ./new-api --port 3000

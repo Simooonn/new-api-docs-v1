@@ -93,11 +93,18 @@ git pull
 # 编译后端
 go build -o new-api
 
-# 更新并编译前端
-cd web
+# 更新并编译前端（根据需要选择新版或旧版，这里以新版为例）
+# 新版前端 (default)
+cd web/default
 bun install
 bun run build
-cd ..
+cd ../..
+
+# 旧版前端 (classic)
+# cd web/classic
+# bun install
+# bun run build
+# cd ../..
 
 # 重启服务
 ./new-api --port 3000
@@ -161,11 +168,18 @@ git checkout v1.x.x
 # 重新编译
 go build -o new-api
 
-# 更新并编译前端
-cd web
+# 更新并编译前端（根据需要选择新版或旧版，这里以新版为例）
+# 新版前端 (default)
+cd web/default
 bun install
 bun run build
-cd ..
+cd ../..
+
+# 旧版前端 (classic)
+# cd web/classic
+# bun install
+# bun run build
+# cd ../..
 
 # 重启服务
 ./new-api --port 3000

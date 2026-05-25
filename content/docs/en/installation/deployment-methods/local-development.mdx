@@ -105,26 +105,61 @@ After installation, restart your terminal or run `source ~/.bashrc` (or `~/.zshr
 
 ### Install Frontend Dependencies
 
+Depending on the frontend version you need to develop or compile, navigate to the corresponding directory to install dependencies and develop:
+
+#### New Frontend (default)
+
 ```bash
-cd web
-bun install   # Install frontend dependencies using bun
+cd web/default
+bun install   # Install new frontend dependencies using bun
+```
+
+#### Classic Frontend (classic)
+
+```bash
+cd web/classic
+bun install   # Install classic frontend dependencies using bun
 ```
 
 ### Run Development Server
 
+Choose a frontend version to run:
+
+**New Frontend (default):**
+
 ```bash
-bun run dev   # Run development server using bun
+cd web/default
+bun run dev   # Run new development server using bun
 ```
 
-The frontend development server runs on `http://localhost:5173` by default and is configured with a proxy that forwards API requests to the backend service.
+**Classic Frontend (classic):**
+
+```bash
+cd web/classic
+bun run dev   # Run classic development server using bun
+```
+
+The frontend development server runs on `http://localhost:5173` by default (each version may differ slightly, please check terminal output for details) and is configured with a proxy that forwards API requests to the backend service.
 
 ### Build Frontend Assets
 
+Build the corresponding frontend assets as needed:
+
+**New Frontend (default):**
+
 ```bash
-bun run build   # Build frontend assets using bun
+cd web/default
+bun run build   # Build new frontend assets using bun
 ```
 
-The built files will be generated into the `web/dist` directory, and the backend service will automatically load these static assets.
+**Classic Frontend (classic):**
+
+```bash
+cd web/classic
+bun run build   # Build classic frontend assets using bun
+```
+
+The built files will be generated into their respective `dist` directories (e.g., `web/default/dist` or `web/classic/dist`), and the backend service will automatically load these static assets.
 
 7.  **Create a Pull Request**: Create a PR on GitHub, describing your changes.
 

@@ -95,11 +95,18 @@ git pull
 # 编译后端
 go build -o new-api
 
-# 更新并编译前端
-cd web
+# Update and build frontend (choose new or classic as needed, default is new)
+# New Frontend (default)
+cd web/default
 bun install
 bun run build
-cd ..
+cd ../..
+
+# Classic Frontend (classic)
+# cd web/classic
+# bun install
+# bun run build
+# cd ../..
 
 # 重启服务
 ./new-api --port 3000
@@ -165,11 +172,18 @@ git checkout v1.x.x
 # 重新编译
 go build -o new-api
 
-# 更新并编译前端
-cd web
+# Update and build frontend (choose new or classic as needed, default is new)
+# New Frontend (default)
+cd web/default
 bun install
 bun run build
-cd ..
+cd ../..
+
+# Classic Frontend (classic)
+# cd web/classic
+# bun install
+# bun run build
+# cd ../..
 
 # 重启服务
 ./new-api --port 3000
