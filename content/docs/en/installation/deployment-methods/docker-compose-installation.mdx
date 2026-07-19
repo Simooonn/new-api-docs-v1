@@ -30,10 +30,9 @@ nano docker-compose.yml
 ```
 
 <Callout type="info" title="Tip">
-  The `docker-compose.yml` file included with the project has already configured
-  all necessary services (including MySQL and Redis). You only need to modify
-  parameters such as ports and passwords according to your actual situation to
-  use it.
+  The included `docker-compose.yml` uses the recommended PostgreSQL and Redis
+  setup. Adjust parameters such as ports and passwords before use. MySQL remains
+  available as a compatible alternative.
 </Callout>
 
 ### Method Two: Manually Create Configuration File
@@ -50,7 +49,7 @@ cd new-api
 2. Create the `docker-compose.yml` file in this directory
 
    You can refer to the configuration examples in the [Docker Compose Configuration Guide](/en/docs/installation/config-maintenance/docker-compose-yml) document and choose according to your needs:
-   - For production environments, a complete configuration (including MySQL and Redis) is recommended.
+   - For production environments, use the complete configuration with PostgreSQL and Redis.
    - For testing environments, a simplified configuration can be used.
 
 3. Use a text editor to create the file:
@@ -84,11 +83,11 @@ This command will automatically pull the required images and start the services 
 docker compose logs -f
 ```
 
-- **Logs for a specific service** (Examples: `new-api`, `mysql`, `redis`)
+- **Logs for a specific service** (Examples: `new-api`, `postgres`, `redis`)
 
 ```bash
 docker compose logs -f new-api
-docker compose logs -f mysql
+docker compose logs -f postgres
 docker compose logs -f redis
 ```
 

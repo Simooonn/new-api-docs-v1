@@ -6,7 +6,7 @@ title: Docker Compose 配置说明
 
 ## 基本配置结构
 
-Docker Compose配置文件 `docker-compose.yml` 定义了New API服务及其依赖服务（如MySQL、Redis）的部署方式。
+Docker Compose 配置文件 `docker-compose.yml` 定义了 New API 及其依赖服务的部署方式。标准配置优先使用 PostgreSQL 和 Redis，MySQL 作为兼容选项保留。
 
 ## 标准配置（推荐生产环境）
 
@@ -140,7 +140,7 @@ New API支持多种环境变量配置，以下是常用的几个：
 
 | 环境变量            | 说明                   | 示例                                  |
 | ------------------- | ---------------------- | ------------------------------------- |
-| `SQL_DSN`           | 数据库连接字符串       | `root:123456@tcp(mysql:3306)/new-api` |
+| `SQL_DSN`           | 数据库连接字符串       | `postgresql://root:123456@postgres:5432/new-api` |
 | `REDIS_CONN_STRING` | Redis连接字符串        | `redis://redis`                       |
 | `REDIS_POOL_SIZE`   | Redis连接池大小        | `10`                                  |
 | `TZ`                | 时区设置               | `Asia/Shanghai`                       |
@@ -176,7 +176,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api
       - REDIS_CONN_STRING=redis://master-redis # 可改为共享 Redis，或删除以禁用 Redis
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret
@@ -196,7 +196,7 @@ services:
     ports:
       - '3001:3000' # 注意端口映射不同
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api
       - REDIS_CONN_STRING=redis://slave-redis # 可与主节点相同、使用本节点 Redis，或删除
       - SESSION_SECRET=your_unique_session_secret # 必须与主节点相同
       - CRYPTO_SECRET=your_unique_crypto_secret # 共享 Redis 时必须与主节点相同

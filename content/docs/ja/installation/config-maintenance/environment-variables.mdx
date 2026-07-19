@@ -21,12 +21,17 @@ title: 環境変数設定ガイド
 
 | 環境変数                | 説明                           | デフォルト値                   | 例                                                                                                                             |
 | ----------------------- | ------------------------------ | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `SQL_DSN`               | データベース接続文字列         | SQLite (`one-api.db`) | MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` \| PostgreSQL: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` |
+| `SQL_DSN`               | データベース接続文字列         | SQLite (`one-api.db`) | PostgreSQL（推奨）: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` \| MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` |
 | `SQL_MAX_IDLE_CONNS`    | アイドル接続プールの最大接続数 | `100`                    | `SQL_MAX_IDLE_CONNS=50`                                                                                                          |
 | `SQL_MAX_OPEN_CONNS`    | 接続プールの最大オープン接続数 | `1000`                   | `SQL_MAX_OPEN_CONNS=500`                                                                                                         |
 | `SQL_MAX_LIFETIME`      | 接続の最大ライフタイム（秒）   | `60`                     | `SQL_MAX_LIFETIME=120`                                                                                                           |
-| `LOG_SQL_DSN`           | ログテーブル独立データベース接続文字列 | -                        | `LOG_SQL_DSN=root:123456@tcp(localhost:3306)/oneapi_logs`                                                                        |
+| `LOG_SQL_DSN`           | ログテーブル独立データベース接続文字列 | -                        | `LOG_SQL_DSN=postgresql://root:123456@postgres:5432/oneapi_logs`                                                                 |
 | `SQLITE_PATH`           | SQLiteデータベースパス         | `one-api.db`             | `SQLITE_PATH=/var/lib/new-api/new-api.db`                                                                                        |
+
+<Callout type="info" title="データベースの推奨">
+  本番環境では PostgreSQL を優先して推奨します。MySQL は互換オプションとして
+  引き続き利用できます。`SQL_DSN` 未設定時の SQLite はローカル開発とテスト向けです。
+</Callout>
 
 ## キャッシュ設定
 
@@ -241,7 +246,7 @@ New API が直接受け付ける Redis 設定は `REDIS_CONN_STRING` と `REDIS_
 
 ```bash
 # データベース設定 - リモートデータベースを使用
-SQL_DSN=root:password@tcp(db-server:3306)/oneapi
+SQL_DSN=postgresql://newapi:password@db-server:5432/oneapi
 
 # セキュリティ設定
 SESSION_SECRET=your_unique_session_secret
@@ -255,7 +260,7 @@ REDIS_CONN_STRING=redis://default:password@redis-server:6379
 
 ```bash
 # データベース設定 - 同じリモートデータベースを使用
-SQL_DSN=root:password@tcp(db-server:3306)/oneapi
+SQL_DSN=postgresql://newapi:password@db-server:5432/oneapi
 
 # セキュリティ設定 - SESSION_SECRET はマスターノードと同じ値を使用
 SESSION_SECRET=your_unique_session_secret
@@ -288,7 +293,7 @@ services:
     image: calciumion/new-api:latest
     environment:
       - TZ=Asia/Shanghai
-      - SQL_DSN=root:123456@tcp(mysql:3306)/oneapi
+      - SQL_DSN=postgresql://newapi:123456@postgres:5432/oneapi
       - REDIS_CONN_STRING=redis://default:redispw@redis:6379
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret

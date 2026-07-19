@@ -30,9 +30,9 @@ nano docker-compose.yml
 ```
 
 <Callout type="info" title="ヒント">
-  プロジェクトに付属の `docker-compose.yml`
-  ファイルには、必要なすべてのサービス（MySQL および Redis
-  を含む）がすでに設定されています。実際の状況に応じて、ポート、パスワードなどのパラメータを変更するだけで使用できます。
+  プロジェクト付属の `docker-compose.yml` は、推奨構成である PostgreSQL と Redis
+  を設定済みです。使用前にポートやパスワードなどを変更してください。MySQL
+  も互換オプションとして利用できます。
 </Callout>
 
 ### 方法2：手動で設定ファイルを作成する
@@ -49,7 +49,7 @@ cd new-api
 1. そのディレクトリ内に `docker-compose.yml` ファイルを作成します。
 
    [Docker Compose 設定説明](/ja/docs/installation/config-maintenance/docker-compose-yml) ドキュメントの設定例を参考に、ご自身の要件に応じて選択してください。
-   - 本番環境では完全な設定（MySQL と Redis を含む）の使用を推奨します。
+   - 本番環境では PostgreSQL と Redis を含む完全な構成を推奨します。
    - テスト環境では簡略化された設定を使用できます。
 
 1. テキストエディタを使用してファイルを作成します。
@@ -83,11 +83,11 @@ docker compose up -d
 docker compose logs -f
 ```
 
-- **指定サービスのログ**（例：`new-api`、`mysql`、`redis`）
+- **指定サービスのログ**（例：`new-api`、`postgres`、`redis`）
 
 ```bash
 docker compose logs -f new-api
-docker compose logs -f mysql
+docker compose logs -f postgres
 docker compose logs -f redis
 ```
 

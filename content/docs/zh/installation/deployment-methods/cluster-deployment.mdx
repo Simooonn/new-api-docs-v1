@@ -8,7 +8,7 @@ title: 集群部署
 
 - 多台服务器（至少两台，一主多从架构）
 - 已安装 Docker 和 Docker Compose
-- 共享的 MySQL 数据库（主从节点需访问同一数据库）
+- 共享的 PostgreSQL 数据库（推荐，所有应用节点需访问同一数据库）
 - 可选的 Redis 服务（可由所有节点共享，也可由各节点独立使用）
 - 可选：负载均衡器（如 Nginx、HAProxy 或云服务商提供的负载均衡服务）
 
@@ -27,7 +27,7 @@ New API 集群采用主从架构设计：
 
 集群部署的关键在于所有节点必须：
 
-1. **共享相同的数据库**：所有节点访问同一 MySQL 数据库
+1. **共享相同的数据库**：所有节点访问同一 PostgreSQL 数据库
 2. **选择 Redis 拓扑**：所有节点共享 Redis、各节点使用独立 Redis，或不使用 Redis
 3. **使用相同的会话密钥**：`SESSION_SECRET` 必须在所有节点上相同；共享 Redis 的节点还必须使用相同的 `CRYPTO_SECRET`
 4. **正确配置节点类型**：主节点为 `master`，从节点为 `slave`
@@ -36,21 +36,22 @@ New API 集群采用主从架构设计：
 
 ### 步骤一：准备共享数据库并选择 Redis 拓扑
 
-首先，您必须准备所有应用节点共同访问的 MySQL 数据库。它可以是：
+首先，您必须准备所有应用节点共同访问的 PostgreSQL 数据库。优先推荐：
 
-- 单独部署的高可用 MySQL 服务
-- 云服务商提供的托管数据库服务
-- 独立服务器上运行的 MySQL
+- 云服务商提供的托管 PostgreSQL 服务
+- 单独部署的高可用 PostgreSQL 服务
+- 独立服务器上运行的 PostgreSQL
 
-对于 MySQL 数据库，您可以选择以下架构方案：
+对于 PostgreSQL，常见的生产架构如下：
 
-| 架构类型           | 组件构成                                          | 工作方式                                                           | 应用配置方式                 |
-| ------------------ | ------------------------------------------------- | ------------------------------------------------------------------ | ---------------------------- |
-| **主从复制架构**   | 1个主库<br />N个从库                            | 主库处理写入<br />从库处理读取<br />主从数据自动同步           | 配置主库地址作为 `SQL_DSN`   |
-| **数据库集群架构** | 多个对等节点<br />代理层(ProxySQL/MySQL Router) | 所有节点都可读写<br />通过代理层实现负载均衡<br />自动故障转移 | 配置代理层地址作为 `SQL_DSN` |
+| 架构类型         | 组件构成                                       | 工作方式                                        | 应用配置方式                     |
+| ---------------- | ---------------------------------------------- | ----------------------------------------------- | -------------------------------- |
+| **主备复制**     | 1 个主库<br />N 个备用库                       | 主库处理读写<br />备用库持续复制并可用于故障切换 | 配置主库地址作为 `SQL_DSN`       |
+| **高可用集群**   | PostgreSQL 节点<br />托管入口或 Patroni + HAProxy | 入口将连接路由到当前主库<br />支持自动故障转移   | 配置统一可写入口作为 `SQL_DSN`   |
 
 <Callout type="warn" title="重要提示">
-  无论选择哪种架构，应用程序的 `SQL_DSN` 配置都只需要一个统一入口地址。
+  无论选择哪种架构，`SQL_DSN` 都应指向同一个稳定、可写的 PostgreSQL
+  入口。MySQL 仍受支持，但不再作为集群部署的首选示例。
 </Callout>
 
 确保这些服务能够被所有节点访问，并具有足够的性能和可靠性。
@@ -80,7 +81,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - SQL_DSN=root:password@tcp(your-db-host:3306)/new-api
+      - SQL_DSN=postgresql://newapi:password@your-db-host:5432/new-api
       - REDIS_CONN_STRING=redis://default:password@your-redis-host:6379 # 可改为本节点 Redis，或删除以禁用 Redis
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret
@@ -116,7 +117,7 @@ services:
     ports:
       - '3000:3000' # 可以与主节点使用相同端口，因为它们在不同服务器上
     environment:
-      - SQL_DSN=root:password@tcp(your-db-host:3306)/new-api # 与主节点相同
+      - SQL_DSN=postgresql://newapi:password@your-db-host:5432/new-api # 与主节点相同
       - REDIS_CONN_STRING=redis://default:password@your-node-redis-host:6379 # 可与主节点相同、使用本节点 Redis，或删除以禁用 Redis
       - SESSION_SECRET=your_unique_session_secret # 必须与主节点相同
       - CRYPTO_SECRET=your_unique_crypto_secret # 共享 Redis 时必须与主节点相同
@@ -224,7 +225,7 @@ healthcheck:
 
 ```yaml
 environment:
-  - LOG_SQL_DSN=root:password@tcp(log-db-host:3306)/new_api_logs # 独立的日志数据库
+  - LOG_SQL_DSN=postgresql://newapi:password@log-db-host:5432/new_api_logs # 独立的日志数据库
 ```
 
 ## 扩容指南

@@ -6,7 +6,7 @@ This document details the Docker Compose configuration options for New API, appl
 
 ## Basic Configuration Structure
 
-The Docker Compose configuration file `docker-compose.yml` defines how the New API service and its dependent services (such as MySQL, Redis) are deployed.
+The `docker-compose.yml` file defines New API and its dependencies. The standard configuration prefers PostgreSQL with Redis; MySQL remains available as a compatible alternative.
 
 ## Standard Configuration (Recommended for Production)
 
@@ -140,7 +140,7 @@ New API supports various environment variable configurations. Here are some comm
 
 | Environment Variable | Description                                         | Example                               |
 | -------------------- | --------------------------------------------------- | ------------------------------------- |
-| `SQL_DSN`            | Database connection string                          | `root:123456@tcp(mysql:3306)/new-api` |
+| `SQL_DSN`            | Database connection string                          | `postgresql://root:123456@postgres:5432/new-api` |
 | `REDIS_CONN_STRING`  | One Redis-compatible connection endpoint            | `redis://redis`                       |
 | `REDIS_POOL_SIZE`    | Redis connection pool size                           | `10`                                  |
 | `TZ`                 | Time zone setting                                   | `Asia/Shanghai`                       |
@@ -166,7 +166,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api
       - REDIS_CONN_STRING=redis://your-master-redis-host:6379 # May be shared with other nodes or dedicated to this node
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret
@@ -187,7 +187,7 @@ services:
     ports:
       - '3001:3000' # Note the different port mapping
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api # Must point to the same database as the master
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api # Must point to the same database as the master
       - REDIS_CONN_STRING=redis://your-slave-redis-host:6379 # Use the master's address instead to share Redis
       - SESSION_SECRET=your_unique_session_secret # Must be the same as the master node
       - CRYPTO_SECRET=your_unique_crypto_secret # Must match the master when Redis is shared

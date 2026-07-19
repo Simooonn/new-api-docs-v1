@@ -19,7 +19,36 @@ This document provides detailed steps for deploying New API using Docker.
 
 ## Deploy Directly Using Docker Image
 
-### Using SQLite Database (Not Recommended)
+### Using PostgreSQL (Recommended)
+
+PostgreSQL is the preferred database for production deployments:
+
+```shell
+docker run --name new-api -d --restart always \
+  -p 3000:3000 \
+  -e SQL_DSN="postgresql://username:password@database-host:5432/database-name" \
+  -e TZ=Asia/Shanghai \
+  -v /your/data/path:/data \
+  calciumion/new-api:latest
+```
+
+<Callout type="info" title="Choosing a database">
+  PostgreSQL is preferred for production. New API remains compatible with
+  MySQL, while SQLite is intended for local evaluation and temporary tests.
+</Callout>
+
+### Using MySQL (Compatible)
+
+```shell
+docker run --name new-api -d --restart always \
+  -p 3000:3000 \
+  -e SQL_DSN="username:password@tcp(database-host:3306)/database-name" \
+  -e TZ=Asia/Shanghai \
+  -v /your/data/path:/data \
+  calciumion/new-api:latest
+```
+
+### Using SQLite (Testing Only)
 
 ```shell
 docker run --name new-api -d --restart always \
@@ -32,21 +61,6 @@ docker run --name new-api -d --restart always \
 <Callout type="warn" title="Note">
   Please replace `/your/data/path` with your desired local path for data
   storage.
-</Callout>
-
-### Using MySQL Database
-
-```shell
-docker run --name new-api -d --restart always \
-  -p 3000:3000 \
-  -e SQL_DSN="用户名:密码@tcp(数据库地址:3306)/数据库名" \
-  -e TZ=Asia/Shanghai \
-  -v /your/data/path:/data \
-  calciumion/new-api:latest
-```
-
-<Callout type="warn" title="Note">
-  Please replace the database connection information in the parameters.
 </Callout>
 
 ## Accessing the System

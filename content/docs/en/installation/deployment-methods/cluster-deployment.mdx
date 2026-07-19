@@ -8,7 +8,7 @@ This document provides detailed configuration steps and best practices for New A
 
 - Multiple servers (at least two, master-slave architecture)
 - Docker and Docker Compose installed
-- Shared database (every application node must access the same database)
+- Shared PostgreSQL database (recommended; every application node must access the same database)
 - Optional Redis service (shared by all nodes or deployed independently per node)
 - Optional: Load balancer (e.g., Nginx, HAProxy, or cloud provider's load balancing service)
 
@@ -27,7 +27,7 @@ The diagram shows a shared-Redis example only. Independent Redis per node and no
 
 The key to cluster deployment is that all nodes must:
 
-1.  **Share the same database**: All nodes access the same database
+1.  **Share the same database**: All nodes access the same PostgreSQL database
 2.  **Choose a Redis topology**: Share Redis, use independent Redis per node, or run without Redis
 3.  **Use the correct secrets**: `SESSION_SECRET` must be identical on every node; nodes that share Redis must also use the same effective `CRYPTO_SECRET`
 4.  **Correctly configure node type**: Master node as `master`, slave nodes as `slave`
@@ -36,22 +36,23 @@ The key to cluster deployment is that all nodes must:
 
 ### Step One: Prepare the Shared Database and Choose a Redis Topology
 
-First, prepare a database that every application node can access. It can be:
+First, prepare a PostgreSQL database that every application node can access. Prefer one of these options:
 
-- A separately deployed highly available database service
-- A managed database service provided by a cloud provider
-- A database running on an independent server
+- A managed PostgreSQL service provided by a cloud provider
+- A separately deployed highly available PostgreSQL service
+- PostgreSQL running on an independent server
 
-For MySQL databases, you can choose from the following architectural solutions:
+Common PostgreSQL production architectures include:
 
-| Architecture Type                         | Component Composition                                        | How it Works                                                                                     | Application Configuration Method           |
-| :---------------------------------------- | :----------------------------------------------------------- | :----------------------------------------------------------------------------------------------- | :----------------------------------------- |
-| **Master-Slave Replication Architecture** | 1 Master<br />N Slaves                                       | Master handles writes<br />Slaves handle reads<br />Master-slave data automatically synchronized | Configure master address as `SQL_DSN`      |
-| **Database Cluster Architecture**         | Multiple peer nodes<br />Proxy layer (ProxySQL/MySQL Router) | All nodes can read/write<br />Load balancing via proxy layer<br />Automatic failover             | Configure proxy layer address as `SQL_DSN` |
+| Architecture | Components | How it works | Application configuration |
+| :--- | :--- | :--- | :--- |
+| **Primary/standby replication** | 1 primary<br />N standbys | The primary handles reads and writes; standbys replicate continuously and can take over | Configure the primary address as `SQL_DSN` |
+| **High-availability cluster** | PostgreSQL nodes<br />Managed endpoint or Patroni + HAProxy | The endpoint routes connections to the current primary and supports automatic failover | Configure the stable writable endpoint as `SQL_DSN` |
 
 <Callout type="warn" title="Important Note">
-  Regardless of the chosen architecture, the application's `SQL_DSN`
-  configuration only requires a unified entry address.
+  In every architecture, `SQL_DSN` should point to one stable, writable
+  PostgreSQL endpoint. MySQL remains supported, but it is no longer the
+  preferred cluster example.
 </Callout>
 
 Ensure these services are accessible by all nodes and have sufficient performance and reliability.
@@ -81,7 +82,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - SQL_DSN=root:password@tcp(your-db-host:3306)/new-api
+      - SQL_DSN=postgresql://newapi:password@your-db-host:5432/new-api
       - REDIS_CONN_STRING=redis://default:password@your-redis-host:6379
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret
@@ -118,7 +119,7 @@ services:
     ports:
       - '3000:3000' # May use the same port as the master because the nodes are on different servers
     environment:
-      - SQL_DSN=root:password@tcp(your-db-host:3306)/new-api # Must match the master
+      - SQL_DSN=postgresql://newapi:password@your-db-host:5432/new-api # Must match the master
       - REDIS_CONN_STRING=redis://default:password@your-slave-redis-host:6379 # May match the master or point to this node's independent Redis
       - SESSION_SECRET=your_unique_session_secret # Must match the master
       - CRYPTO_SECRET=your_unique_crypto_secret # Must match the master when Redis is shared
@@ -226,7 +227,7 @@ For large-scale clusters, a centralized log management system is recommended:
 
 ```yaml
 environment:
-  - LOG_SQL_DSN=root:password@tcp(log-db-host:3306)/new_api_logs # Separate log database
+  - LOG_SQL_DSN=postgresql://newapi:password@log-db-host:5432/new_api_logs # Separate log database
 ```
 
 ## Scaling Guide

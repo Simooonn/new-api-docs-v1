@@ -30,8 +30,8 @@ nano docker-compose.yml
 ```
 
 <Callout type="info" title="提示">
-  项目自带的 `docker-compose.yml` 文件已经配置好了所有必要的服务（包括 MySQL 和
-  Redis），您只需根据实际情况修改端口、密码等参数即可使用。
+  项目自带的 `docker-compose.yml` 已按推荐方案配置 PostgreSQL 和 Redis，您只需根据
+  实际情况修改端口、密码等参数即可使用。MySQL 仍作为兼容选项保留。
 </Callout>
 
 ### 方法二：手动创建配置文件
@@ -48,7 +48,7 @@ cd new-api
 1. 在该目录中创建`docker-compose.yml`文件
 
    您可以参考[Docker Compose配置说明](/zh/docs/installation/config-maintenance/docker-compose-yml)文档中的配置示例，根据您的需求选择：
-   - 生产环境推荐使用完整配置（包含MySQL和Redis）
+   - 生产环境推荐使用完整配置（包含 PostgreSQL 和 Redis）
    - 测试环境可以使用简化配置
 
 1. 使用文本编辑器创建文件：
@@ -82,11 +82,11 @@ docker compose up -d
 docker compose logs -f
 ```
 
-- **指定服务日志**（示例：`new-api`、`mysql`、`redis`）
+- **指定服务日志**（示例：`new-api`、`postgres`、`redis`）
 
 ```bash
 docker compose logs -f new-api
-docker compose logs -f mysql
+docker compose logs -f postgres
 docker compose logs -f redis
 ```
 

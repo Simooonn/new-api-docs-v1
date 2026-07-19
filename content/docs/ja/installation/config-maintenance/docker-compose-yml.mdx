@@ -6,7 +6,7 @@ title: Docker Compose 設定説明
 
 ## 基本的な設定構造
 
-Docker Compose 設定ファイル `docker-compose.yml` は、New API サービスとその依存サービス（MySQL、Redis など）のデプロイ方法を定義します。
+`docker-compose.yml` は New API と依存サービスのデプロイ方法を定義します。標準構成では PostgreSQL と Redis を優先し、MySQL は互換オプションとして利用できます。
 
 ## 標準設定（本番環境推奨）
 
@@ -140,7 +140,7 @@ New API は複数の環境変数設定をサポートしており、以下はよ
 
 | 環境変数            | 説明                                                 | 例                                    |
 | ------------------- | ---------------------------------------------------- | ------------------------------------- |
-| `SQL_DSN`           | データベース接続文字列                               | `root:123456@tcp(mysql:3306)/new-api` |
+| `SQL_DSN`           | データベース接続文字列                               | `postgresql://root:123456@postgres:5432/new-api` |
 | `REDIS_CONN_STRING` | Redis 接続文字列                                     | `redis://redis`                       |
 | `REDIS_POOL_SIZE`   | Redis 接続プールサイズ                               | `10`                                  |
 | `TZ`                | タイムゾーン設定                                     | `Asia/Shanghai`                       |
@@ -166,7 +166,7 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api
       - REDIS_CONN_STRING=redis://your-master-redis-host:6379 # 他ノードと共有、またはこのノード専用として使用可能
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret
@@ -187,7 +187,7 @@ services:
     ports:
       - '3001:3000' # ポートマッピングが異なることに注意
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api # マスターと同じデータベースを指す必要があります
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api # マスターと同じデータベースを指す必要があります
       - REDIS_CONN_STRING=redis://your-slave-redis-host:6379 # Redis を共有する場合はマスターと同じアドレスを使用します
       - SESSION_SECRET=your_unique_session_secret # マスターノードと同じである必要があります
       - CRYPTO_SECRET=your_unique_crypto_secret # Redis を共有する場合はマスターと同じ値が必要です

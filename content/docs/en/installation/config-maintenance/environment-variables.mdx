@@ -21,12 +21,18 @@ This document provides all environment variables supported by New API and their 
 
 | Environment Variable          | Description                                    | Default Value             | Example                                                                                                                             |
 | ----------------------------- | ---------------------------------------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `SQL_DSN`                     | Database connection string                     | SQLite (`one-api.db`)     | MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` \| PostgreSQL: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` |
+| `SQL_DSN`                     | Database connection string                     | SQLite (`one-api.db`)     | PostgreSQL (recommended): `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` \| MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` |
 | `SQL_MAX_IDLE_CONNS`          | Maximum idle connections in connection pool    | `100`                     | `SQL_MAX_IDLE_CONNS=50`                                                                                                          |
 | `SQL_MAX_OPEN_CONNS`          | Maximum open connections in connection pool    | `1000`                    | `SQL_MAX_OPEN_CONNS=500`                                                                                                         |
 | `SQL_MAX_LIFETIME`            | Maximum connection lifetime (seconds)          | `60`                      | `SQL_MAX_LIFETIME=120`                                                                                                          |
-| `LOG_SQL_DSN`                 | Separate database connection string for log table | -                         | `LOG_SQL_DSN=root:123456@tcp(localhost:3306)/oneapi_logs`                                                                        |
+| `LOG_SQL_DSN`                 | Separate database connection string for log table | -                         | `LOG_SQL_DSN=postgresql://root:123456@postgres:5432/oneapi_logs`                                                                 |
 | `SQLITE_PATH`                 | SQLite database path                           | `one-api.db`              | `SQLITE_PATH=/var/lib/new-api/new-api.db`                                                                                        |
+
+<Callout type="info" title="Database recommendation">
+  PostgreSQL is preferred for production. MySQL remains a compatible option;
+  SQLite, used when `SQL_DSN` is unset, is better suited to local development
+  and testing.
+</Callout>
 
 ## Cache Configuration
 
@@ -241,7 +247,7 @@ Multi-machine deployments must use the same database and the same `SESSION_SECRE
 
 ```bash
 # Database Configuration - Use a remote database
-SQL_DSN=root:password@tcp(db-server:3306)/oneapi
+SQL_DSN=postgresql://newapi:password@db-server:5432/oneapi
 
 # Security Configuration
 SESSION_SECRET=your_unique_session_secret
@@ -255,7 +261,7 @@ REDIS_CONN_STRING=redis://default:password@redis-server:6379
 
 ```bash
 # Database Configuration - Use the same remote database
-SQL_DSN=root:password@tcp(db-server:3306)/oneapi
+SQL_DSN=postgresql://newapi:password@db-server:5432/oneapi
 
 # Security Configuration - SESSION_SECRET must match the master
 SESSION_SECRET=your_unique_session_secret
@@ -288,7 +294,7 @@ services:
     image: calciumion/new-api:latest
     environment:
       - TZ=Asia/Shanghai
-      - SQL_DSN=root:123456@tcp(mysql:3306)/oneapi
+      - SQL_DSN=postgresql://newapi:123456@postgres:5432/oneapi
       - REDIS_CONN_STRING=redis://default:redispw@redis:6379
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret
