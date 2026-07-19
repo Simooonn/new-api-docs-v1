@@ -35,16 +35,20 @@ title: 環境変数設定ガイド
 | `REDIS_CONN_STRING`     | Redis接続文字列                        | -        | `REDIS_CONN_STRING=redis://default:redispw@localhost:6379` |
 | `REDIS_POOL_SIZE`       | Redis接続プールサイズ                  | `10`     | `REDIS_POOL_SIZE=20`                                       |
 | `MEMORY_CACHE_ENABLED`  | メモリキャッシュを有効にするか（Redis有効化後に自動有効化） | `false`  | `MEMORY_CACHE_ENABLED=true`                                |
-| `SYNC_FREQUENCY`        | キャッシュとデータベースの同期頻度（秒） | `60`     | `SYNC_FREQUENCY=120`                                       |
+| `SYNC_FREQUENCY`        | キャッシュ同期頻度、および独立 Redis 構成での Session キャッシュの最大陳腐化時間（秒） | `60`     | `SYNC_FREQUENCY=120`                                       |
 | `BATCH_UPDATE_ENABLED`  | データベースの一括更新集約を有効にする | `false`  | `BATCH_UPDATE_ENABLED=true`                                |
 | `BATCH_UPDATE_INTERVAL` | 一括更新集約の時間間隔（秒）           | `5`      | `BATCH_UPDATE_INTERVAL=10`                                 |
+
+Session Redis Hash の TTL は、Session の残り有効期間と有効な `SYNC_FREQUENCY` のうち短い方です。読み取りでは TTL は延長されません。独立 Redis 構成では、値を大きくすると Session 状態の収束が遅くなり、値を小さくするとデータベース参照が増えます。遅延して完了した active キャッシュの書き戻しにも、元のデータベース参照時点から残っている観測ウィンドウだけが使われます。
+
+New API が直接受け付ける Redis 設定は `REDIS_CONN_STRING` と `REDIS_POOL_SIZE` です。Redis Cluster や Sentinel のノード一覧をアプリケーションへ直接渡す方式には対応していません。高可用性が必要な場合は、`REDIS_CONN_STRING` に単一の Redis 互換接続エンドポイントを指定してください。
 
 ## マルチノードとセキュリティ設定
 
 | 環境変数                    | 説明                                           | デフォルト値 | 例                                        |
 | --------------------------- | ---------------------------------------------- | -------- | ------------------------------------------- |
 | `SESSION_SECRET`            | セッションキー（マルチマシンデプロイに必須） | -        | `SESSION_SECRET=your_session_secret`        |
-| `CRYPTO_SECRET`             | 暗号化キー（データベースコンテンツを暗号化、デフォルトはSESSION_SECRETにフォールバック） | -        | `CRYPTO_SECRET=your_crypto_secret`          |
+| `CRYPTO_SECRET`             | Redis キャッシュキー用 HMAC シークレット（未設定時は `SESSION_SECRET` を使用） | デフォルトは `SESSION_SECRET` | `CRYPTO_SECRET=your_crypto_secret`          |
 | `FRONTEND_BASE_URL`         | フロントエンドベースURL（スレーブノードで使用、未一致のルーティングをこのアドレスにリダイレクト） | -        | `FRONTEND_BASE_URL=https://<your-newapi-domain>` |
 | `NODE_TYPE`                 | ノードタイプ                                   | `master` | `NODE_TYPE=slave`                           |
 | `TLS_INSECURE_SKIP_VERIFY`  | グローバルTLS証明書検証をスキップ              | `false`  | `TLS_INSECURE_SKIP_VERIFY=true`             |
@@ -52,6 +56,10 @@ title: 環境変数設定ガイド
 
 <Callout type="warn" title="SESSION_SECRET の注意事項">
   `SESSION_SECRET` を `random_string` に設定することはできません。設定するとプログラムは起動を拒否します。マルチマシンデプロイの場合、すべてのノードで同じキーを使用する必要があります。
+</Callout>
+
+<Callout type="info" title="Redis 構成と CRYPTO_SECRET">
+  Redis は全ノードで共有する、ノードごとに独立して配置する、または使用しない、のいずれも選択できます。同じ Redis を共有するノード同士では、有効な `CRYPTO_SECRET` も同一にしてください。独立 Redis 構成では、Session の失効は有効な `SYNC_FREQUENCY` 以内に共有データベースを再参照して収束します。
 </Callout>
 
 <Callout type="info" title="クラスターデプロイ">
@@ -227,7 +235,7 @@ title: 環境変数設定ガイド
 
 ## マルチマシンデプロイの例
 
-マルチマシンデプロイのシナリオでは、以下の環境変数を設定する必要があります：
+マルチマシンデプロイでは、すべてのノードが同じリモートデータベースと同じ `SESSION_SECRET` を使用する必要があります。Redis は全ノードで共有するか、ノードごとに独立して配置するか、設定せずに運用できます：
 
 ### マスターノード設定
 
@@ -239,7 +247,7 @@ SQL_DSN=root:password@tcp(db-server:3306)/oneapi
 SESSION_SECRET=your_unique_session_secret
 CRYPTO_SECRET=your_unique_crypto_secret
 
-# Redisキャッシュ設定
+# Redisキャッシュ設定（ノード専用 Redis を使用するか、この行を省略して Redis を無効化することも可能）
 REDIS_CONN_STRING=redis://default:password@redis-server:6379
 ```
 
@@ -249,12 +257,12 @@ REDIS_CONN_STRING=redis://default:password@redis-server:6379
 # データベース設定 - 同じリモートデータベースを使用
 SQL_DSN=root:password@tcp(db-server:3306)/oneapi
 
-# セキュリティ設定 - マスターノードと同じキーを使用
+# セキュリティ設定 - SESSION_SECRET はマスターノードと同じ値を使用
 SESSION_SECRET=your_unique_session_secret
-CRYPTO_SECRET=your_unique_crypto_secret
+CRYPTO_SECRET=your_unique_crypto_secret # Redis を共有する場合はマスターと同じ値を使用
 
-# Redisキャッシュ設定 - マスターノードと同じRedisを使用
-REDIS_CONN_STRING=redis://default:password@redis-server:6379
+# Redisキャッシュ設定 - マスターと同じ Redis、またはこのノード専用 Redis を指定可能
+REDIS_CONN_STRING=redis://default:password@redis-slave-node:6379
 
 # ノードタイプ設定
 NODE_TYPE=slave
@@ -267,7 +275,7 @@ SYNC_FREQUENCY=60
 ```
 
 <Callout type="info" title="完全なクラスター設定">
-  これは基本的なマルチノード設定の例にすぎません。完全なクラスターデプロイ設定、アーキテクチャの説明、およびベストプラクティスについては、[クラスターデプロイガイド](/ja/docs/installation/deployment-methods/cluster-deployment)を参照してください。
+  この例ではノードごとに独立した Redis を使用しています。Redis を共有する場合は両方のノードで同じ `REDIS_CONN_STRING` を使用し、Redis を使用しない場合は設定を省略してください。どの構成でもデータベースは共有します。完全な設定と整合性の違いについては、[クラスターデプロイガイド](/ja/docs/installation/deployment-methods/cluster-deployment)を参照してください。
 </Callout>
 
 ## Docker Composeにおける環境変数の例
