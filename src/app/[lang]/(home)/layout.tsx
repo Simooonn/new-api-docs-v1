@@ -11,7 +11,6 @@ import Link from 'fumadocs-core/link';
 import Image from 'next/image';
 import Preview from '@/../public/assets/dashboard-dark.png';
 import {
-  Rocket,
   Download,
   HelpCircle,
   Sparkles,
@@ -23,7 +22,6 @@ import { getLocalePath } from '@/lib/i18n';
 
 // Navigation items configuration
 const NAV_ITEMS = [
-  { key: 'start', icon: Rocket, path: '' },
   { key: 'install', icon: Download, path: '/installation' },
   { key: 'support', icon: HelpCircle, path: '/support' },
   { key: 'api', icon: BookOpen, path: '/api' },
@@ -38,10 +36,6 @@ const i18nText: Record<
   en: {
     title: { text: 'Documentation', desc: '' },
     skills: { text: 'Skills', desc: '' },
-    start: {
-      text: 'Getting Started',
-      desc: 'Learn how to deploy and configure Ace Hub.',
-    },
     install: {
       text: 'Installation',
       desc: 'Various deployment methods and installation guides.',
@@ -107,9 +101,10 @@ function MenuLinkItem({
   item,
   className,
 }: {
-  item: { text: string; desc: string; url: string; Icon: LucideIcon };
+  item?: { text: string; desc: string; url: string; Icon: LucideIcon };
   className?: string;
 }) {
+  if (!item) return null;
   const { Icon, text, desc, url } = item;
   return (
     <NavbarMenuLink href={url} className={className}>
@@ -166,7 +161,7 @@ export default async function Layout({
                 </NavbarMenuTrigger>
                 <NavbarMenuContent className="text-[15px]">
                   {/* First item with preview image */}
-                  <NavbarMenuLink href={docsUrl} className="md:row-span-2">
+                  <NavbarMenuLink href={navItems[0].url} className="md:row-span-2">
                     <div className="-mx-3 -mt-3">
                       <Image
                         src={Preview}
@@ -185,17 +180,12 @@ export default async function Layout({
                       {navItems[0].desc}
                     </p>
                   </NavbarMenuLink>
-                  {/* Second column */}
+                  {/* Remaining items fill the grid; NAV_ITEMS currently has 4 entries */}
                   <MenuLinkItem item={navItems[1]} className="lg:col-start-2" />
                   <MenuLinkItem item={navItems[2]} className="lg:col-start-2" />
-                  {/* Third column */}
                   <MenuLinkItem
                     item={navItems[3]}
-                    className="lg:col-start-3 lg:row-start-1"
-                  />
-                  <MenuLinkItem
-                    item={navItems[4]}
-                    className="lg:col-start-3 lg:row-start-2"
+                    className="lg:col-start-3 lg:row-span-2"
                   />
                 </NavbarMenuContent>
               </NavbarMenu>
