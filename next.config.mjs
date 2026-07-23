@@ -10,6 +10,10 @@ const config = {
     serverActions: {
       allowedOrigins: [
         'localhost:3000',
+        'docs.acetoken.top',
+        'www.acetoken.top',
+        'acetoken.top',
+        // upstream legacy origins (kept to minimize sync diff)
         // newapi.pro domains
         'docs.newapi.pro',
         'newapi.pro',

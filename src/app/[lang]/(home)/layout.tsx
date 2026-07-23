@@ -15,7 +15,6 @@ import {
   Download,
   HelpCircle,
   Sparkles,
-  FileCode,
   BookOpen,
   Puzzle,
   type LucideIcon,
@@ -38,11 +37,10 @@ const i18nText: Record<
 > = {
   en: {
     title: { text: 'Documentation', desc: '' },
-    apiDocs: { text: 'Apifox Playground', desc: '' },
     skills: { text: 'Skills', desc: '' },
     start: {
       text: 'Getting Started',
-      desc: 'Learn how to deploy and configure New API.',
+      desc: 'Learn how to deploy and configure Ace Hub.',
     },
     install: {
       text: 'Installation',
@@ -60,9 +58,8 @@ const i18nText: Record<
   },
   zh: {
     title: { text: '文档', desc: '' },
-    apiDocs: { text: 'Apifox 操练场', desc: '' },
     skills: { text: 'Skills', desc: '' },
-    start: { text: '快速开始', desc: '学习如何部署和配置 New API。' },
+    start: { text: '快速开始', desc: '学习如何部署和配置 Ace Hub。' },
     install: { text: '部署安装', desc: '多种部署方式和安装指南。' },
     support: { text: '帮助支持', desc: '常见问题和社区支持。' },
     api: { text: 'API 参考', desc: '完整的 API 文档和参考指南。' },
@@ -70,9 +67,8 @@ const i18nText: Record<
   },
   ja: {
     title: { text: 'ドキュメント', desc: '' },
-    apiDocs: { text: 'Apifox プレイグラウンド', desc: '' },
     skills: { text: 'Skills', desc: '' },
-    start: { text: 'はじめに', desc: 'New API のデプロイと設定方法を学ぶ。' },
+    start: { text: 'はじめに', desc: 'Ace Hub のデプロイと設定方法を学ぶ。' },
     install: {
       text: 'インストール',
       desc: '様々なデプロイ方法とインストールガイド。',
@@ -159,14 +155,6 @@ export default async function Layout({
             url: `${docsUrl}/skills`,
             icon: <Puzzle />,
           },
-          {
-            type: 'main',
-            on: 'menu',
-            text: texts.apiDocs.text,
-            url: 'https://apifox.newapi.ai/',
-            icon: <FileCode />,
-            external: true,
-          },
           // Desktop navigation
           {
             type: 'custom',
@@ -227,13 +215,6 @@ export default async function Layout({
                 </span>
               </Link>
             ),
-          },
-          {
-            type: 'main',
-            on: 'nav',
-            text: texts.apiDocs.text,
-            url: 'https://apifox.newapi.ai/',
-            external: true,
           },
           ...linkItems,
         ]}
