@@ -41,6 +41,20 @@ const config = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/:lang(en|zh|ja)/docs',
+        destination: '/:lang/docs/api',
+        permanent: false, // 307
+      },
+      {
+        source: '/:lang(en|zh|ja)/docs/',
+        destination: '/:lang/docs/api',
+        permanent: false,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

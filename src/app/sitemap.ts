@@ -107,7 +107,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const depth = page.slugs.length;
       let priority: number;
       if (depth === 1) {
-        priority = 0.9; // Top-level pages (e.g., /docs/guide)
+        priority = 0.9; // Top-level pages (e.g., /docs/api)
       } else if (depth === 2) {
         priority = 0.8; // Second-level pages
       } else {

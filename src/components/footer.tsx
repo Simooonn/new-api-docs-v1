@@ -29,11 +29,9 @@ const socialLinks: { name: string; href: string; icon: React.ReactNode }[] = [
 // Internal link paths (only labels need translation)
 // ============================================
 const internalPaths = {
-  aboutProject: 'docs/guide/wiki/basic-concepts/project-introduction',
-  features: 'docs/guide/wiki/basic-concepts/features-introduction',
-  installation: 'docs/installation',
-  userGuide: 'docs/guide/home',
-  apiDocs: 'docs/api',
+  api: 'docs/api',
+  apps: 'docs/apps',
+  support: 'docs/support',
 } as const;
 
 // ============================================
@@ -41,16 +39,11 @@ const internalPaths = {
 // ============================================
 interface FooterTranslation {
   sections: {
-    about: {
-      title: string;
-      aboutProject: string;
-      features: string;
-    };
     docs: {
       title: string;
-      installation: string;
-      userGuide: string;
-      apiDocs: string;
+      api: string;
+      apps: string;
+      support: string;
     };
   };
   copyright: string;
@@ -59,48 +52,33 @@ interface FooterTranslation {
 const translations: Record<string, FooterTranslation> = {
   zh: {
     sections: {
-      about: {
-        title: '关于我们',
-        aboutProject: '关于项目',
-        features: '功能特性',
-      },
       docs: {
         title: '文档',
-        installation: '安装部署',
-        userGuide: '使用指南',
-        apiDocs: 'API 文档',
+        api: 'API',
+        apps: '应用',
+        support: '支持',
       },
     },
     copyright: '© 2025 锟腾科技. All Rights Reserved.',
   },
   en: {
     sections: {
-      about: {
-        title: 'About Us',
-        aboutProject: 'About Project',
-        features: 'Features',
-      },
       docs: {
         title: 'Docs',
-        installation: 'Installation',
-        userGuide: 'User Guide',
-        apiDocs: 'API Docs',
+        api: 'API',
+        apps: 'Apps',
+        support: 'Support',
       },
     },
     copyright: '© 2025 QuantumNous. All Rights Reserved.',
   },
   ja: {
     sections: {
-      about: {
-        title: '私たちについて',
-        aboutProject: 'プロジェクトについて',
-        features: '機能',
-      },
       docs: {
         title: 'ドキュメント',
-        installation: 'インストール',
-        userGuide: 'ユーザーガイド',
-        apiDocs: 'APIドキュメント',
+        api: 'API',
+        apps: 'アプリ',
+        support: 'サポート',
       },
     },
     copyright: '© 2025 QuantumNous. All Rights Reserved.',
@@ -113,24 +91,11 @@ const translations: Record<string, FooterTranslation> = {
 function buildSections(t: FooterTranslation) {
   return [
     {
-      title: t.sections.about.title,
-      links: [
-        {
-          label: t.sections.about.aboutProject,
-          href: internalPaths.aboutProject,
-        },
-        { label: t.sections.about.features, href: internalPaths.features },
-      ],
-    },
-    {
       title: t.sections.docs.title,
       links: [
-        {
-          label: t.sections.docs.installation,
-          href: internalPaths.installation,
-        },
-        { label: t.sections.docs.userGuide, href: internalPaths.userGuide },
-        { label: t.sections.docs.apiDocs, href: internalPaths.apiDocs },
+        { label: t.sections.docs.api, href: internalPaths.api },
+        { label: t.sections.docs.apps, href: internalPaths.apps },
+        { label: t.sections.docs.support, href: internalPaths.support },
       ],
     },
   ];

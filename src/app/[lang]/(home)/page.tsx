@@ -60,7 +60,7 @@ export default async function Page({
           </h1>
           <div className="flex w-fit flex-row flex-wrap items-center justify-center gap-4">
             <Link
-              href={getLocalePath(lang, 'docs')}
+              href={getLocalePath(lang, 'docs/api')}
               className="bg-brand text-brand-foreground hover:bg-brand-200 inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-medium tracking-tight transition-colors max-sm:text-sm"
             >
               <BookOpen className="size-4" />

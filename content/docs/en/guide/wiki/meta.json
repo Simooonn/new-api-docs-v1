@@ -1,6 +1,0 @@
-{
-  "title": "Wiki",
-  "description": "Ace Hub project documentation and basics",
-  "icon": "BookOpen",
-  "pages": ["basic-concepts", "project-records"]
-}

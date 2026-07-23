@@ -1,4 +1,8 @@
 {
   "title": "文档",
-  "pages": ["guide", "installation", "api", "apps", "skills", "support", "business", "legal"]
+  "pages": [
+    "api",
+    "apps",
+    "support"
+  ]
 }
