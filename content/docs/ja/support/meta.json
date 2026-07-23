@@ -3,9 +3,5 @@
   "description": "よくある質問とコミュニティサポート",
   "icon": "Headset",
   "root": true,
-  "pages": [
-    "index",
-    "faq",
-    "feedback-issues"
-  ]
+  "pages": ["faq"]
 }

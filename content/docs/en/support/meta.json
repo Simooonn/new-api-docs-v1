@@ -3,9 +3,5 @@
   "description": "FAQ and community support",
   "icon": "Headset",
   "root": true,
-  "pages": [
-    "index",
-    "faq",
-    "feedback-issues"
-  ]
+  "pages": ["faq"]
 }

@@ -53,6 +53,16 @@ const config = {
         destination: '/:lang/docs/api',
         permanent: false,
       },
+      {
+        source: '/:lang(en|zh|ja)/docs/support',
+        destination: '/:lang/docs/support/faq',
+        permanent: false,
+      },
+      {
+        source: '/:lang(en|zh|ja)/docs/support/',
+        destination: '/:lang/docs/support/faq',
+        permanent: false,
+      },
     ];
   },
   async rewrites() {

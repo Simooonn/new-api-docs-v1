@@ -496,6 +496,9 @@ async function main() {
   const usedOperationIds = new Set<string>();
 
   for (const ep of root.data) {
+    // Skip management module (后台管理接口) — only generate AI model OpenAPI
+    if (ep.moduleId === 6660656) continue;
+
     const group = groupByModuleId(ep.moduleId);
     const tags = (ep.tags && ep.tags.length > 0 ? ep.tags : ['default']).map(
       (t) => t || 'default'
