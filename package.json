@@ -5,8 +5,8 @@
   "scripts": {
     "prebuild": "tsx scripts/prebuild.ts",
     "build": "next build",
-    "dev": "next dev",
-    "start": "next start",
+    "dev": "next dev -p 3004",
+    "start": "next start -p 3004",
     "postinstall": "fumadocs-mdx",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

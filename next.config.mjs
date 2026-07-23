@@ -10,6 +10,7 @@ const config = {
     serverActions: {
       allowedOrigins: [
         'localhost:3000',
+        'localhost:3004',
         'docs.acetoken.top',
         'www.acetoken.top',
         'acetoken.top',
