@@ -192,13 +192,14 @@ export function Hero() {
           )}
         >
           <Image
-            src="/assets/newapi.svg"
+            src="/assets/logo-512.png"
             alt="logo"
             width={288}
             height={288}
             className="size-32 drop-shadow-2xl sm:size-40 md:size-56 lg:size-72"
             onLoad={() => setLogoReady(true)}
             priority
+            unoptimized
           />
         </div>
       )}

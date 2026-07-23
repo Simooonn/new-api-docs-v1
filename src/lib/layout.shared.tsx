@@ -8,10 +8,10 @@ export const linkItems: LinkItemType[] = [];
 export const logo = (
   <Image
     alt="Ace Hub"
-    src="/assets/newapi.svg"
-    width={20}
-    height={20}
-    className="size-5"
+    src="/assets/logo-512.png"
+    width={40}
+    height={40}
+    className="size-10"
     priority
     unoptimized
   />
