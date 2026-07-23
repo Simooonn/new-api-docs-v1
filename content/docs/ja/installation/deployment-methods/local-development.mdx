@@ -12,7 +12,8 @@ title: ローカル開発とデプロイ
 - **Node.js** 18 以降（フロントエンド開発）
 - **Bun** 最新バージョン（推奨されるパッケージマネージャー、npm/yarn より25倍高速）
 - **Git**（バージョン管理）
-- **MySQL**（オプション、デフォルトでは SQLite を使用）
+- **PostgreSQL**（推奨する外部データベース）
+- **MySQL**（互換用のオプション）
 - **Redis**（オプション、パフォーマンス向上用）
 - **Visual Studio Code** またはその他のコードエディター
 
@@ -52,13 +53,13 @@ cp .env.example .env
 
 ```bash
 PORT=3000
-SQL_DSN=root:password@tcp(localhost:3306)/new-api   # MySQL を使用する場合、コメント解除して変更
+# SQL_DSN=postgresql://newapi:password@localhost:5432/new-api  # 推奨: PostgreSQL。コメント解除して変更
 # REDIS_CONN_STRING=redis://localhost:6379         # Redis を使用する場合、コメント解除して変更
 ```
 
 <Callout type="info" title="ヒント">
-  `SQL_DSN` を設定しない場合、システムはデフォルトで SQLite
-  データベースを使用し、`one-api.db` ファイルに保存されます。
+  `SQL_DSN` を設定しない場合は `one-api.db` の SQLite を使用します。SQLite
+  はローカル開発とテスト向けです。外部データベースには PostgreSQL を優先して推奨します。
 </Callout>
 
 ### バックエンドサービスの実行

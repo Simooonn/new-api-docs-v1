@@ -1,1 +1,655 @@
-<svg aria-roledescription="flowchart-v2" viewBox="-7.500000476837158 -8 1012.0625610351562 1735.14306640625" style="" xmlns="http://www.w3.org/2000/svg" width="996" height="1719" id="render_svg_3128"><style>#render_svg_3128{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#333;}#render_svg_3128 .error-icon{fill:#552222;}#render_svg_3128 .error-text{fill:#552222;stroke:#552222;}#render_svg_3128 .edge-thickness-normal{stroke-width:2px;}#render_svg_3128 .edge-thickness-thick{stroke-width:3.5px;}#render_svg_3128 .edge-pattern-solid{stroke-dasharray:0;}#render_svg_3128 .edge-pattern-dashed{stroke-dasharray:3;}#render_svg_3128 .edge-pattern-dotted{stroke-dasharray:2;}#render_svg_3128 .marker{fill:#333333;stroke:#333333;}#render_svg_3128 .marker.cross{stroke:#333333;}#render_svg_3128 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#render_svg_3128 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#333;}#render_svg_3128 .cluster-label text{fill:#333;}#render_svg_3128 .cluster-label span{color:#333;}#render_svg_3128 .label text,#render_svg_3128 span{fill:#333;color:#333;}#render_svg_3128 .node rect,#render_svg_3128 .node circle,#render_svg_3128 .node ellipse,#render_svg_3128 .node polygon,#render_svg_3128 .node path{fill:#ECECFF;stroke:#9370DB;stroke-width:1px;}#render_svg_3128 .node .label{text-align:center;}#render_svg_3128 .node.clickable{cursor:pointer;}#render_svg_3128 .arrowheadPath{fill:#333333;}#render_svg_3128 .edgePath .path{stroke:#333333;stroke-width:2.0px;}#render_svg_3128 .flowchart-link{stroke:#333333;fill:none;}#render_svg_3128 .edgeLabel{background-color:#e8e8e8;text-align:center;}#render_svg_3128 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#render_svg_3128 .cluster rect{fill:#ffffde;stroke:#aaaa33;stroke-width:1px;}#render_svg_3128 .cluster text{fill:#333;}#render_svg_3128 .cluster span{color:#333;}#render_svg_3128 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(80, 100%, 96.2745098039%);border:1px solid #aaaa33;border-radius:2px;pointer-events:none;z-index:100;}#render_svg_3128 .flowchartTitleText{text-anchor:middle;font-size:18px;fill:#333;}#render_svg_3128 :root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#render_svg_3128 .frontend&gt;*{fill:#f9d6d2!important;stroke:#d36159!important;stroke-width:2px!important;}#render_svg_3128 .frontend span{fill:#f9d6d2!important;stroke:#d36159!important;stroke-width:2px!important;}#render_svg_3128 .backend&gt;*{fill:#d4f4dd!important;stroke:#57a870!important;stroke-width:2px!important;}#render_svg_3128 .backend span{fill:#d4f4dd!important;stroke:#57a870!important;stroke-width:2px!important;}#render_svg_3128 .database&gt;*{fill:#d0e1f9!important;stroke:#4d76b0!important;stroke-width:2px!important;}#render_svg_3128 .database span{fill:#d0e1f9!important;stroke:#4d76b0!important;stroke-width:2px!important;}#render_svg_3128 .external&gt;*{fill:#f9f7d9!important;stroke:#b0af4a!important;stroke-width:2px!important;}#render_svg_3128 .external span{fill:#f9f7d9!important;stroke:#b0af4a!important;stroke-width:2px!important;}#render_svg_3128 .middleware&gt;*{fill:#e3d0f9!important;stroke:#8049b0!important;stroke-width:2px!important;}#render_svg_3128 .middleware span{fill:#e3d0f9!important;stroke:#8049b0!important;stroke-width:2px!important;}#render_svg_3128 .deployment&gt;*{fill:#f9e0d0!important;stroke:#b07a49!important;stroke-width:2px!important;}#render_svg_3128 .deployment span{fill:#f9e0d0!important;stroke:#b07a49!important;stroke-width:2px!important;}</style><g><marker orient="auto" markerHeight="12" markerWidth="12" markerUnits="userSpaceOnUse" refY="5" refX="10" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-pointEnd"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 0 L 10 5 L 0 10 z"/></marker><marker orient="auto" markerHeight="12" markerWidth="12" markerUnits="userSpaceOnUse" refY="5" refX="0" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-pointStart"><path style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 0 5 L 10 10 L 10 0 z"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="11" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-circleEnd"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5" refX="-1" viewBox="0 0 10 10" class="marker flowchart" id="flowchart-circleStart"><circle style="stroke-width: 1; stroke-dasharray: 1, 0;" class="arrowMarkerPath" r="5" cy="5" cx="5"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="12" viewBox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossEnd"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"/></marker><marker orient="auto" markerHeight="11" markerWidth="11" markerUnits="userSpaceOnUse" refY="5.2" refX="-1" viewBox="0 0 11 11" class="marker cross flowchart" id="flowchart-crossStart"><path style="stroke-width: 2; stroke-dasharray: 1, 0;" class="arrowMarkerPath" d="M 1,1 l 9,9 M 10,1 l -9,9"/></marker><g class="root"><g class="clusters"/><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Client LE-FrontEnd" id="L-Client-FrontEnd-0" d="M484.23802453949605,58.28571319580078L509.1001431302441,66.61904652913411C533.9622617209922,74.95237986246745,583.6864989024883,91.61904652913411,608.5486174932363,104.11904652913411C633.4107360839844,116.61904652913411,633.4107360839844,124.95237986246745,633.4107360839844,129.11904652913412L633.4107360839844,133.28571319580078"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Client LE-BackEnd" id="L-Client-BackEnd-0" d="M384.9316226773008,58.28571319580078L360.06950408655274,66.61904652913411C335.2073854958047,74.95237986246745,285.4831483143086,91.61904652913411,260.6210297235605,124.94047546386719C235.7589111328125,158.26190439860025,235.7589111328125,208.23809560139975,235.7589111328125,258.2142868041992C235.7589111328125,308.1904780069987,235.7589111328125,358.16666920979816,241.284484291038,387.32143147786456C246.81005744926358,416.47619374593097,257.86120376571466,424.80952707926434,263.3867769239402,428.97619374593097L268.91235008216574,433.14286041259766"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-FrontEnd LE-BackEnd" id="L-FrontEnd-BackEnd-0" d="M633.4107360839844,383.14286041259766L633.4107360839844,387.30952707926434C633.4107360839844,391.47619374593097,633.4107360839844,399.80952707926434,627.8851629257589,408.14286041259766C622.3595897675333,416.47619374593097,611.3084434510822,424.80952707926434,605.7828702928567,428.97619374593097L600.2572971346311,433.14286041259766"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-BackEnd LE-RelaySystem" id="L-BackEnd-RelaySystem-0" d="M575.2559411014859,683.0000076293945L579.9476592512382,687.1666742960612C584.6393774009906,691.3333409627279,594.0228137004952,699.6666742960612,598.7145318502477,708.0000076293945C603.40625,716.3333409627279,603.40625,724.6666742960612,603.40625,728.8333409627279L603.40625,733.0000076293945"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-BackEnd LE-Storage" id="L-BackEnd-Storage-0" d="M293.9137061153111,683.0000076293945L289.2219879655587,687.1666742960612C284.5302698158063,691.3333409627279,275.14683351630157,699.6666742960612,270.45511536654925,773.5122400919596C265.7633972167969,847.357805887858,265.7633972167969,986.7156041463217,265.7633972167969,1056.3945032755535L265.7633972167969,1126.0734024047852"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-RelaySystem LE-AIExternalServices" id="L-RelaySystem-AIExternalServices-0" d="M603.40625,1635.8571243286133L603.40625,1640.02379099528C603.40625,1644.1904576619465,603.40625,1652.52379099528,603.40625,1660.8571243286133C603.40625,1669.1904576619465,603.40625,1677.52379099528,603.40625,1681.6904576619465L603.40625,1685.8571243286133"/></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(-7.5, -8)" class="root"><g class="clusters"><g id="Deployment" class="cluster deployment"><rect height="83.28571319580078" width="317.64286041259766" y="8" x="8" ry="0" rx="0" style=""/><g transform="translate(123.9464225769043, 8)" class="cluster-label"><foreignObject height="18.285715103149414" width="85.75001525878906"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Deployment</span></div></foreignObject></g></g></g><g class="edgePaths"/><g class="edgeLabels"/><g class="nodes"><g transform="translate(75.16964340209961, 49.64285659790039)" id="flowchart-Docker-241" class="node default deployment"><rect height="33.285715103149414" width="64.33928680419922" y="-16.642857551574707" x="-32.16964340209961" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-24.66964340209961, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="49.33928680419922"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Docker</span></div></foreignObject></g></g><g transform="translate(223.99107360839844, 49.64285659790039)" id="flowchart-DockerCompose-242" class="node default deployment"><rect height="33.285715103149414" width="133.30357360839844" y="-16.642857551574707" x="-66.65178680419922" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-59.15178680419922, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="118.30357360839844"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Docker Compose</span></div></foreignObject></g></g></g></g><g transform="translate(107.74554443359375, 1118.0734024047852)" class="root"><g class="clusters"><g id="Storage" class="cluster database database"><rect height="116.7103271484375" width="301.03572845458984" y="8" x="8" ry="0" rx="0" style=""/><g transform="translate(112.6160774230957, 8)" class="cluster-label"><foreignObject height="18.285715103149414" width="91.80357360839844"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Data Storage</span></div></foreignObject></g></g></g><g class="edgePaths"/><g class="edgeLabels"/><g class="nodes"><g transform="translate(83.25, 66.35516357421875)" id="flowchart-Database-239" class="node default database"><path transform="translate(-40.25,-31.33263857347252)" d="M 0,9.793187347931873 a 40.25,9.793187347931873 0,0,0 80.5 0 a 40.25,9.793187347931873 0,0,0 -80.5 0 l 0,43.07890245108129 a 40.25,9.793187347931873 0,0,0 80.5 0 l 0,-43.07890245108129" style=""/><g transform="translate(-32.75, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="65.5"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Database</span></div></foreignObject></g></g><g transform="translate(223.76786422729492, 66.35516357421875)" id="flowchart-Redis-240" class="node default database"><path transform="translate(-50.26786422729492,-33.35901087628487)" d="M 0,11.144102216473438 a 50.26786422729492,11.144102216473438 0,0,0 100.53572845458984 0 a 50.26786422729492,11.144102216473438 0,0,0 -100.53572845458984 0 l 0,44.429817319622856 a 50.26786422729492,11.144102216473438 0,0,0 100.53572845458984 0 l 0,-44.429817319622856" style=""/><g transform="translate(-42.76786422729492, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="85.53572845458984"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Redis Cache</span></div></foreignObject></g></g></g></g><g transform="translate(458.78125, 725.0000076293945)" class="root"><g class="clusters"><g id="RelaySystem" class="cluster middleware middleware"><rect height="902.8571395874023" width="274.25" y="8" x="8" ry="0" rx="0" style=""/><g transform="translate(88.94642639160156, 8)" class="cluster-label"><foreignObject height="18.285715103149414" width="112.35714721679688"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">AI Relay System</span></div></foreignObject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-RelayRouter LE-RelayHandler" id="L-RelayRouter-RelayHandler-0" d="M145.125,66.28571319580078L145.125,70.45237986246745C145.125,74.61904652913411,145.125,82.95237986246745,145.125,91.28571319580078C145.125,99.61904652913411,145.125,107.95237986246745,145.125,112.11904652913411L145.125,116.28571319580078"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-RelayHandler LE-AdapterLayer" id="L-RelayHandler-AdapterLayer-0" d="M145.125,149.57142639160156L145.125,153.73809305826822C145.125,157.9047597249349,145.125,166.23809305826822,145.125,174.57142639160156C145.125,182.9047597249349,145.125,191.23809305826822,145.125,195.4047597249349L145.125,199.57142639160156"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-AdapterLayer LE-AIChannels" id="L-AdapterLayer-AIChannels-0" d="M145.125,232.85713958740234L145.125,237.023806254069C145.125,241.1904729207357,145.125,249.523806254069,145.125,257.85713958740234C145.125,266.19047292073566,145.125,274.52380625406903,145.125,278.69047292073566L145.125,282.85713958740234"/></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(145.125, 49.64285659790039)" id="flowchart-RelayRouter-223" class="node default middleware"><rect height="33.285715103149414" width="105.50894165039062" y="-16.642857551574707" x="-52.75447082519531" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-45.25447082519531, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="90.50894165039062"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Relay Router</span></div></foreignObject></g></g><g transform="translate(145.125, 132.92856979370117)" id="flowchart-RelayHandler-224" class="node default middleware"><rect height="33.285715103149414" width="120.90178680419922" y="-16.642857551574707" x="-60.45089340209961" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-52.95089340209961, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="105.90178680419922"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Relay Handlers</span></div></foreignObject></g></g><g transform="translate(145.125, 216.21428298950195)" id="flowchart-AdapterLayer-225" class="node default middleware"><rect height="33.285715103149414" width="124.67857360839844" y="-16.642857551574707" x="-62.33928680419922" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-54.83928680419922, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="109.67857360839844"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Model Adapters</span></div></foreignObject></g></g><g transform="translate(35.5, 274.85713958740234)" class="root"><g class="clusters"><g id="AIChannels" class="cluster middleware middleware"><rect height="602.9999923706055" width="204.25" y="8" x="8" ry="0" rx="0" style=""/><g transform="translate(40.45088195800781, 8)" class="cluster-label"><foreignObject height="18.285715103149414" width="139.34823608398438"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">AI Service Channels</span></div></foreignObject></g></g></g><g class="edgePaths"/><g class="edgeLabels"/><g class="nodes"><g transform="translate(110.125, 59.64285659790039)" id="flowchart-OpenAI-226" class="node default default"><rect height="33.285715103149414" width="66.06250762939453" y="-16.642857551574707" x="-33.031253814697266" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-25.531253814697266, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="51.06250762939453"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">OpenAI</span></div></foreignObject></g></g><g transform="translate(110.125, 142.92856979370117)" id="flowchart-Claude-227" class="node default default"><rect height="33.285715103149414" width="64.08036422729492" y="-16.642857551574707" x="-32.04018211364746" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-24.54018211364746, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="49.08036422729492"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Claude</span></div></foreignObject></g></g><g transform="translate(110.125, 226.21428298950195)" id="flowchart-Gemini-228" class="node default default"><rect height="33.285715103149414" width="65.69643020629883" y="-16.642857551574707" x="-32.848215103149414" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-25.348215103149414, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="50.69643020629883"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Gemini</span></div></foreignObject></g></g><g transform="translate(110.125, 309.49999618530273)" id="flowchart-Midjourney-229" class="node default default"><rect height="33.285715103149414" width="94.60714721679688" y="-16.642857551574707" x="-47.30357360839844" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-39.80357360839844, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="79.60714721679688"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Midjourney</span></div></foreignObject></g></g><g transform="translate(110.125, 392.7857093811035)" id="flowchart-Baidu-230" class="node default default"><rect height="33.285715103149414" width="54.6875" y="-16.642857551574707" x="-27.34375" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-19.84375, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="39.6875"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Baidu</span></div></foreignObject></g></g><g transform="translate(110.125, 476.0714225769043)" id="flowchart-Zhipu-231" class="node default default"><rect height="33.285715103149414" width="54.76786422729492" y="-16.642857551574707" x="-27.38393211364746" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-19.88393211364746, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="39.76786422729492"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Zhipu</span></div></foreignObject></g></g><g transform="translate(110.125, 559.3571357727051)" id="flowchart-OtherAI-232" class="node default default"><rect height="33.285715103149414" width="154.25" y="-16.642857551574707" x="-77.125" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-69.625, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="139.25"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Other AI Services...</span></div></foreignObject></g></g></g></g></g></g><g transform="translate(222.29574584960938, 425.14286041259766)" class="root"><g class="clusters"><g id="BackEnd" class="cluster backend backend"><rect height="249.85713958740234" width="409.5781440734863" y="8" x="8" ry="0" rx="0" style=""/><g transform="translate(164.88281440734863, 8)" class="cluster-label"><foreignObject height="18.285715103149414" width="95.81251525878906"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Backend (Go)</span></div></foreignObject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Router LE-Controller" id="L-Router-Controller-0" d="M196.74554824829102,65.10364939071371L187.95574124654135,69.46732669156155C179.16593424479166,73.8310039924094,161.58632024129233,82.55835859410509,152.79651323954263,91.0887025616196C144.00670623779297,99.61904652913411,144.00670623779297,107.95237986246745,144.00670623779297,112.11904652913411L144.00670623779297,116.28571319580078"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Controller LE-Service" id="L-Controller-Service-0" d="M120.3323838453118,149.57142639160156L114.40533584195906,153.73809305826822C108.4782878386063,157.9047597249349,96.62419183190082,166.23809305826822,90.69714382854806,174.57142639160156C84.77009582519531,182.9047597249349,84.77009582519531,191.23809305826822,84.77009582519531,195.4047597249349L84.77009582519531,199.57142639160156"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Controller LE-Model" id="L-Controller-Model-0" d="M185.30786267550008,149.57142639160156L195.6479236386817,153.73809305826822C205.98798460186333,157.9047597249349,226.66810652822656,166.23809305826822,237.00816749140822,174.57142639160156C247.34822845458984,182.9047597249349,247.34822845458984,191.23809305826822,247.34822845458984,195.4047597249349L247.34822845458984,199.57142639160156"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Router LE-Middleware" id="L-Router-Middleware-0" d="M259.03126525878906,65.10364939071371L267.82107226053876,69.46732669156155C276.6108792622884,73.8310039924094,294.1904932657878,82.55835859410509,302.9803002675374,91.0887025616196C311.7701072692871,99.61904652913411,311.7701072692871,107.95237986246745,311.7701072692871,112.11904652913411L311.7701072692871,116.28571319580078"/></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(227.88840675354004, 49.64285659790039)" id="flowchart-Router-210" class="node default backend"><rect height="33.285715103149414" width="62.28572082519531" y="-16.642857551574707" x="-31.142860412597656" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-23.642860412597656, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="47.28572082519531"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Router</span></div></foreignObject></g></g><g transform="translate(144.00670623779297, 132.92856979370117)" id="flowchart-Controller-211" class="node default backend"><rect height="33.285715103149414" width="93.91072845458984" y="-16.642857551574707" x="-46.95536422729492" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-39.45536422729492, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="78.91072845458984"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Controllers</span></div></foreignObject></g></g><g transform="translate(84.77009582519531, 216.21428298950195)" id="flowchart-Service-213" class="node default backend"><rect height="33.285715103149414" width="73.16965103149414" y="-16.642857551574707" x="-36.58482551574707" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-29.08482551574707, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="58.16965103149414"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Services</span></div></foreignObject></g></g><g transform="translate(247.34822845458984, 216.21428298950195)" id="flowchart-Model-214" class="node default backend"><rect height="33.285715103149414" width="63.77678680419922" y="-16.642857551574707" x="-31.88839340209961" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-24.38839340209961, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="48.77678680419922"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Models</span></div></foreignObject></g></g><g transform="translate(311.7701072692871, 132.92856979370117)" id="flowchart-Middleware-212" class="node default backend"><rect height="33.285715103149414" width="141.61607360839844" y="-16.642857551574707" x="-70.80803680419922" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-63.30803680419922, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="126.61607360839844"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Middleware Layer</span></div></foreignObject></g></g></g></g><g transform="translate(263.2589111328125, 125.28571319580078)" class="root"><g class="clusters"><g id="FrontEnd" class="cluster frontend frontend"><rect height="249.85713958740234" width="725.3036575317383" y="8" x="8" ry="0" rx="0" style=""/><g transform="translate(309.9955711364746, 8)" class="cluster-label"><foreignObject height="18.285715103149414" width="121.31251525878906"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Frontend (React)</span></div></foreignObject></g></g></g><g class="edgePaths"><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-WebApp LE-Pages" id="L-WebApp-Pages-0" d="M339.82593154907227,61.37285537582293L312.0744406382243,66.35833167915257C284.3229497273763,71.3438079824822,228.81996790568033,81.3147605891415,201.06847699483237,90.4669035591378C173.31698608398438,99.61904652913411,173.31698608398438,107.95237986246745,173.31698608398438,112.11904652913411L173.31698608398438,116.28571319580078"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-WebApp LE-Components" id="L-WebApp-Components-0" d="M405.1205863952637,66.28571319580078L405.1205863952637,70.45237986246745C405.1205863952637,74.61904652913411,405.1205863952637,82.95237986246745,405.1205863952637,91.28571319580078C405.1205863952637,99.61904652913411,405.1205863952637,107.95237986246745,405.1205863952637,112.11904652913411L405.1205863952637,116.28571319580078"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Pages LE-Context" id="L-Pages-Context-0" d="M173.31698608398438,149.57142639160156L173.31698608398438,153.73809305826822C173.31698608398438,157.9047597249349,173.31698608398438,166.23809305826822,184.91379299803057,174.57142639160156C196.51059991207674,182.9047597249349,219.70421374016914,191.23809305826822,231.30102065421534,195.4047597249349L242.8978275682615,199.57142639160156"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-Components LE-Context" id="L-Components-Context-0" d="M405.1205863952637,149.57142639160156L405.1205863952637,153.73809305826822C405.1205863952637,157.9047597249349,405.1205863952637,166.23809305826822,393.52377948121745,174.57142639160156C381.9269725671713,182.9047597249349,358.73335873907894,191.23809305826822,347.1365518250327,195.4047597249349L335.53974491098654,199.57142639160156"/><path marker-end="url(#flowchart-pointEnd)" style="fill:none;" class="edge-thickness-normal edge-pattern-solid flowchart-link LS-WebApp LE-i18n" id="L-WebApp-i18n-0" d="M470.4152412414551,63.42175094527435L492.4219392140706,68.06574465369542C514.4286371866862,72.70973836211648,558.4420331319174,81.99772577895864,580.4487311045328,90.80838615404639C602.4554290771484,99.61904652913411,602.4554290771484,107.95237986246745,602.4554290771484,112.11904652913411L602.4554290771484,116.28571319580078"/></g><g class="edgeLabels"><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g><g class="edgeLabel"><g transform="translate(0, 0)" class="label"><foreignObject height="0" width="0"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="edgeLabel"></span></div></foreignObject></g></g></g><g class="nodes"><g transform="translate(405.1205863952637, 49.64285659790039)" id="flowchart-WebApp-196" class="node default frontend"><rect height="33.285715103149414" width="130.58930206298828" y="-16.642857551574707" x="-65.29465103149414" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-57.79465103149414, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="115.58930206298828"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Web Application</span></div></foreignObject></g></g><g transform="translate(173.31698608398438, 132.92856979370117)" id="flowchart-Pages-197" class="node default frontend"><rect height="33.285715103149414" width="260.6339569091797" y="-16.642857551574707" x="-130.31697845458984" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-122.81697845458984, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="245.6339569091797"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Pages (User, Channel, Token, etc.)</span></div></foreignObject></g></g><g transform="translate(405.1205863952637, 132.92856979370117)" id="flowchart-Components-198" class="node default frontend"><rect height="33.285715103149414" width="102.97322845458984" y="-16.642857551574707" x="-51.48661422729492" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-43.98661422729492, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="87.97322845458984"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Components</span></div></foreignObject></g></g><g transform="translate(289.218786239624, 216.21428298950195)" id="flowchart-Context-199" class="node default frontend"><rect height="33.285715103149414" width="231.29464721679688" y="-16.642857551574707" x="-115.64732360839844" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-108.14732360839844, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="216.29464721679688"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Context (User, Theme, Status)</span></div></foreignObject></g></g><g transform="translate(602.4554290771484, 132.92856979370117)" id="flowchart-i18n-200" class="node default frontend"><rect height="33.285715103149414" width="191.6964569091797" y="-16.642857551574707" x="-95.84822845458984" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-88.34822845458984, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="176.6964569091797"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">i18n Internationalization</span></div></foreignObject></g></g></g></g><g transform="translate(434.58482360839844, 41.64285659790039)" id="flowchart-Client-195" class="node default default"><rect height="33.285715103149414" width="133.88394403457642" y="-16.642857551574707" x="-66.94197201728821" ry="16.642857551574707" rx="16.642857551574707" style=""/><g transform="translate(-55.28125762939453, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="110.56251525878906"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">Client Requests</span></div></foreignObject></g></g><g transform="translate(603.40625, 1702.4999809265137)" id="flowchart-AIExternalServices-254" class="node default external"><rect height="33.285715103149414" width="182.3125" y="-16.642857551574707" x="-91.15625" ry="0" rx="0" style="" class="basic label-container"/><g transform="translate(-83.65625, -9.142857551574707)" style="" class="label"><foreignObject height="18.285715103149414" width="167.3125"><div style="display: inline-block; white-space: nowrap;" xmlns="http://www.w3.org/1999/xhtml"><span class="nodeLabel">External AI Service APIs</span></div></foreignObject></g></g></g></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1280"
+  height="820"
+  viewBox="0 0 1280 820"
+  role="img"
+  aria-labelledby="architecture-title architecture-description"
+>
+  <title id="architecture-title">New API technical architecture</title>
+  <desc id="architecture-description">
+    New API routes requests from web consoles, SDKs, and AI applications through
+    a unified interface, Go backend, relay pipeline, and model adapters to many AI
+    service providers. Database, Redis, Docker, and Docker Compose support the
+    platform.
+  </desc>
+
+  <defs>
+    <linearGradient id="brand-gradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee" />
+      <stop offset="0.5" stop-color="#8b5cf6" />
+      <stop offset="1" stop-color="#ec4899" />
+    </linearGradient>
+    <linearGradient id="foundation-gradient" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ec4899" stop-opacity="0.12" />
+      <stop offset="0.5" stop-color="#8b5cf6" stop-opacity="0.1" />
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0.12" />
+    </linearGradient>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" class="grid-line" fill="none" />
+    </pattern>
+    <filter id="panel-shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+    <filter id="node-shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.07" />
+    </filter>
+    <marker
+      id="arrow"
+      markerWidth="8"
+      markerHeight="8"
+      refX="7"
+      refY="4"
+      orient="auto"
+      markerUnits="strokeWidth"
+    >
+      <path d="M0 0L8 4L0 8Z" class="arrow-head" />
+    </marker>
+
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+
+      text {
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      .canvas {
+        fill: #f8fafc;
+      }
+
+      .grid-line {
+        stroke: #e2e8f0;
+        stroke-width: 1;
+      }
+
+      .panel {
+        fill: #ffffff;
+        stroke: #e2e8f0;
+        stroke-width: 1.2;
+      }
+
+      .node {
+        fill: #ffffff;
+        stroke: #e2e8f0;
+        stroke-width: 1.2;
+      }
+
+      .soft-node {
+        fill: #f8fafc;
+        stroke: #e2e8f0;
+        stroke-width: 1;
+      }
+
+      .divider {
+        stroke: #e2e8f0;
+        stroke-width: 1;
+      }
+
+      .title {
+        fill: #0f172a;
+        font-size: 26px;
+        font-weight: 750;
+        letter-spacing: -0.5px;
+      }
+
+      .subtitle {
+        fill: #64748b;
+        font-size: 14px;
+        font-weight: 450;
+      }
+
+      .layer-index {
+        fill: #94a3b8;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.6px;
+      }
+
+      .layer-title {
+        fill: #0f172a;
+        font-size: 17px;
+        font-weight: 720;
+        letter-spacing: -0.15px;
+      }
+
+      .node-title {
+        fill: #1e293b;
+        font-size: 14px;
+        font-weight: 680;
+      }
+
+      .node-copy {
+        fill: #64748b;
+        font-size: 11.5px;
+        font-weight: 450;
+      }
+
+      .micro-label {
+        fill: #64748b;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 1.25px;
+      }
+
+      .provider-label {
+        fill: #334155;
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      .flow-line {
+        fill: none;
+        stroke: #94a3b8;
+        stroke-width: 2;
+        stroke-linecap: round;
+        marker-end: url(#arrow);
+      }
+
+      .internal-line {
+        fill: none;
+        stroke: #cbd5e1;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        marker-end: url(#arrow);
+      }
+
+      .data-line {
+        fill: none;
+        stroke: #ec4899;
+        stroke-width: 1.6;
+        stroke-linecap: round;
+        stroke-dasharray: 4 5;
+        marker-end: url(#arrow-pink);
+      }
+
+      .arrow-head {
+        fill: #94a3b8;
+      }
+
+      .client-tint {
+        fill: #ecfeff;
+      }
+
+      .interface-tint {
+        fill: #f5f3ff;
+      }
+
+      .core-tint {
+        fill: #fdf2f8;
+      }
+
+      .relay-tint {
+        fill: #fffbeb;
+      }
+
+      .provider-tint {
+        fill: #ecfdf5;
+      }
+
+      .client-accent {
+        fill: #0891b2;
+        stroke: #0891b2;
+      }
+
+      .interface-accent {
+        fill: #7c3aed;
+        stroke: #7c3aed;
+      }
+
+      .core-accent {
+        fill: #db2777;
+        stroke: #db2777;
+      }
+
+      .relay-accent {
+        fill: #d97706;
+        stroke: #d97706;
+      }
+
+      .provider-accent {
+        fill: #059669;
+        stroke: #059669;
+      }
+
+      .icon-stroke {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .white-icon {
+        color: #ffffff;
+      }
+
+      .chip {
+        fill: #ffffff;
+        stroke: #e2e8f0;
+        stroke-width: 1;
+      }
+
+      .chip-text {
+        fill: #475569;
+        font-size: 11px;
+        font-weight: 650;
+      }
+
+      .foundation {
+        fill: url(#foundation-gradient);
+        stroke: #e2e8f0;
+        stroke-width: 1.2;
+      }
+
+      .foundation-title {
+        fill: #0f172a;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .canvas {
+          fill: #090d18;
+        }
+
+        .grid-line {
+          stroke: #172033;
+        }
+
+        .panel,
+        .node {
+          fill: #111827;
+          stroke: #263244;
+        }
+
+        .soft-node {
+          fill: #0d1422;
+          stroke: #263244;
+        }
+
+        .divider {
+          stroke: #263244;
+        }
+
+        .title,
+        .layer-title,
+        .foundation-title {
+          fill: #f8fafc;
+        }
+
+        .subtitle,
+        .node-copy,
+        .micro-label {
+          fill: #94a3b8;
+        }
+
+        .layer-index {
+          fill: #64748b;
+        }
+
+        .node-title,
+        .provider-label {
+          fill: #e2e8f0;
+        }
+
+        .flow-line {
+          stroke: #64748b;
+        }
+
+        .internal-line {
+          stroke: #475569;
+        }
+
+        .arrow-head {
+          fill: #64748b;
+        }
+
+        .client-tint {
+          fill: #092532;
+        }
+
+        .interface-tint {
+          fill: #21183b;
+        }
+
+        .core-tint {
+          fill: #321429;
+        }
+
+        .relay-tint {
+          fill: #30220d;
+        }
+
+        .provider-tint {
+          fill: #0e2b23;
+        }
+
+        .chip {
+          fill: #111827;
+          stroke: #334155;
+        }
+
+        .chip-text {
+          fill: #cbd5e1;
+        }
+
+        .foundation {
+          stroke: #263244;
+        }
+      }
+    </style>
+
+    <marker
+      id="arrow-pink"
+      markerWidth="8"
+      markerHeight="8"
+      refX="7"
+      refY="4"
+      orient="auto"
+      markerUnits="strokeWidth"
+    >
+      <path d="M0 0L8 4L0 8Z" fill="#ec4899" />
+    </marker>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1280" height="820" rx="24" class="canvas" />
+  <rect width="1280" height="820" rx="24" fill="url(#grid)" opacity="0.58" />
+
+  <!-- Header -->
+  <g transform="translate(48 38)">
+    <rect width="40" height="40" rx="12" fill="url(#brand-gradient)" />
+    <g transform="translate(9 9)" class="white-icon">
+      <circle cx="5" cy="11" r="3" fill="none" stroke="currentColor" stroke-width="1.8" />
+      <circle cx="17" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="1.8" />
+      <circle cx="17" cy="17" r="3" fill="none" stroke="currentColor" stroke-width="1.8" />
+      <path d="M7.7 9.6L14.2 6.4M7.7 12.4L14.2 15.6" class="icon-stroke" />
+    </g>
+  </g>
+  <text x="102" y="58" class="title" dominant-baseline="middle">New API Architecture</text>
+  <text x="102" y="84" class="subtitle" dominant-baseline="middle">
+    A unified gateway from any client to every AI provider
+  </text>
+
+  <g transform="translate(952 48)">
+    <rect width="124" height="28" rx="14" class="chip" />
+    <circle cx="16" cy="14" r="4" fill="#ec4899" />
+    <text x="28" y="14" class="chip-text" dominant-baseline="middle">Unified gateway</text>
+  </g>
+  <g transform="translate(1088 48)">
+    <rect width="144" height="28" rx="14" class="chip" />
+    <circle cx="16" cy="14" r="4" fill="#22c55e" />
+    <text x="28" y="14" class="chip-text" dominant-baseline="middle">Multi-protocol</text>
+  </g>
+
+  <!-- Main panels -->
+  <g filter="url(#panel-shadow)">
+    <rect x="48" y="142" width="176" height="480" rx="18" class="panel" />
+    <rect x="48" y="142" width="176" height="74" rx="18" class="client-tint" />
+    <rect x="48" y="198" width="176" height="18" class="client-tint" />
+
+    <rect x="260" y="142" width="220" height="480" rx="18" class="panel" />
+    <rect x="260" y="142" width="220" height="74" rx="18" class="interface-tint" />
+    <rect x="260" y="198" width="220" height="18" class="interface-tint" />
+
+    <rect x="520" y="142" width="260" height="480" rx="18" class="panel" />
+    <rect x="520" y="142" width="260" height="74" rx="18" class="core-tint" />
+    <rect x="520" y="198" width="260" height="18" class="core-tint" />
+
+    <rect x="820" y="142" width="180" height="480" rx="18" class="panel" />
+    <rect x="820" y="142" width="180" height="74" rx="18" class="relay-tint" />
+    <rect x="820" y="198" width="180" height="18" class="relay-tint" />
+
+    <rect x="1040" y="142" width="192" height="480" rx="18" class="panel" />
+    <rect x="1040" y="142" width="192" height="74" rx="18" class="provider-tint" />
+    <rect x="1040" y="198" width="192" height="18" class="provider-tint" />
+  </g>
+
+  <!-- Panel headings -->
+  <text x="66" y="166" class="layer-index">01 · CLIENTS</text>
+  <text x="66" y="193" class="layer-title">Request sources</text>
+
+  <text x="278" y="166" class="layer-index">02 · INTERFACE</text>
+  <text x="278" y="193" class="layer-title">Unified access</text>
+
+  <text x="538" y="166" class="layer-index">03 · PLATFORM</text>
+  <text x="538" y="193" class="layer-title">Core backend · Go</text>
+
+  <text x="838" y="166" class="layer-index">04 · RELAY</text>
+  <text x="838" y="193" class="layer-title">AI relay core</text>
+
+  <text x="1058" y="166" class="layer-index">05 · PROVIDERS</text>
+  <text x="1058" y="193" class="layer-title">Model network</text>
+
+  <!-- Client layer -->
+  <g filter="url(#node-shadow)">
+    <rect x="64" y="238" width="144" height="78" rx="13" class="node" />
+    <rect x="64" y="334" width="144" height="78" rx="13" class="node" />
+    <rect x="64" y="430" width="144" height="78" rx="13" class="node" />
+  </g>
+
+  <circle cx="86" cy="260" r="11" class="client-accent" />
+  <g transform="translate(80 254)" class="white-icon">
+    <rect x="0.5" y="1" width="11" height="8" rx="1.5" class="icon-stroke" />
+    <path d="M4 11H8M6 9V11" class="icon-stroke" />
+  </g>
+  <text x="105" y="263" class="node-title">Web console</text>
+  <text x="80" y="291" class="node-copy">Admin &amp; user interface</text>
+
+  <circle cx="86" cy="356" r="11" class="client-accent" />
+  <g transform="translate(80 350)" class="white-icon">
+    <path d="M4 2L1 6L4 10M8 2L11 6L8 10" class="icon-stroke" />
+  </g>
+  <text x="105" y="359" class="node-title">API &amp; SDKs</text>
+  <text x="80" y="387" class="node-copy">Programmatic clients</text>
+
+  <circle cx="86" cy="452" r="11" class="client-accent" />
+  <g transform="translate(80 446)" class="white-icon">
+    <path d="M2 2H10V10H2ZM5 5H7V7H5Z" class="icon-stroke" />
+  </g>
+  <text x="105" y="455" class="node-title">AI apps</text>
+  <text x="80" y="483" class="node-copy">Chat · CLI · Agents</text>
+
+  <rect x="64" y="548" width="144" height="44" rx="12" class="soft-node" />
+  <text x="136" y="565" class="micro-label" text-anchor="middle">TRANSPORT</text>
+  <text x="136" y="582" class="node-copy" text-anchor="middle">HTTPS · SSE · WebSocket</text>
+
+  <!-- Interface layer -->
+  <g filter="url(#node-shadow)">
+    <rect x="276" y="238" width="188" height="116" rx="14" class="node" />
+    <rect x="276" y="372" width="188" height="82" rx="14" class="node" />
+    <rect x="276" y="480" width="188" height="112" rx="14" class="node" />
+  </g>
+
+  <circle cx="300" cy="263" r="12" class="interface-accent" />
+  <g transform="translate(294 257)" class="white-icon">
+    <circle cx="6" cy="6" r="2" class="icon-stroke" />
+    <path d="M6 0.5C8.8 0.5 11 3 11 6S8.8 11.5 6 11.5 1 9 1 6 3.2.5 6 .5ZM0.7 3.2C3.1 1.8 6.6 2.4 8.5 4.8s1.7 5.4-.2 6.6M11.3 3.2C8.9 1.8 5.4 2.4 3.5 4.8s-1.7 5.4.2 6.6" class="icon-stroke" />
+  </g>
+  <text x="321" y="266" class="node-title">React web app</text>
+  <text x="292" y="297" class="node-copy">Pages · Components</text>
+  <text x="292" y="318" class="node-copy">Responsive management UI</text>
+  <rect x="292" y="328" width="68" height="18" rx="9" class="interface-tint" />
+  <text x="326" y="337" class="micro-label" text-anchor="middle" dominant-baseline="middle">FRONTEND</text>
+
+  <text x="292" y="397" class="node-title">Shared application state</text>
+  <text x="292" y="423" class="node-copy">User · Theme · Status</text>
+  <text x="292" y="442" class="node-copy">Context · i18n</text>
+
+  <circle cx="300" cy="506" r="12" class="interface-accent" />
+  <g transform="translate(294 500)" class="white-icon">
+    <path d="M2 1H10A1 1 0 0 1 11 2V10A1 1 0 0 1 10 11H2A1 1 0 0 1 1 10V2A1 1 0 0 1 2 1ZM4 4L2.5 6 4 8M8 4L9.5 6 8 8" class="icon-stroke" />
+  </g>
+  <text x="321" y="509" class="node-title">Unified API</text>
+  <text x="292" y="540" class="node-copy">Multi-protocol endpoints</text>
+  <text x="292" y="561" class="node-copy">Streaming &amp; tool calls</text>
+  <rect x="292" y="568" width="78" height="18" rx="9" class="interface-tint" />
+  <text x="331" y="577" class="micro-label" text-anchor="middle" dominant-baseline="middle">API ACCESS</text>
+
+  <!-- Core backend -->
+  <g filter="url(#node-shadow)">
+    <rect x="536" y="238" width="228" height="70" rx="13" class="node" />
+    <rect x="536" y="326" width="228" height="70" rx="13" class="node" />
+    <rect x="536" y="414" width="108" height="64" rx="13" class="node" />
+    <rect x="656" y="414" width="108" height="64" rx="13" class="node" />
+    <rect x="536" y="510" width="228" height="82" rx="13" class="soft-node" />
+  </g>
+
+  <circle cx="558" cy="260" r="10" class="core-accent" />
+  <g transform="translate(553 255)" class="white-icon">
+    <path d="M1 2H9M3 5H7M4 8H6" class="icon-stroke" />
+  </g>
+  <text x="577" y="263" class="node-title">Router &amp; middleware</text>
+  <text x="552" y="288" class="node-copy">Auth · Quota · Rate limits</text>
+
+  <circle cx="558" cy="348" r="10" class="core-accent" />
+  <g transform="translate(553 343)" class="white-icon">
+    <path d="M1 1H9V9H1ZM3 3H7M3 5H7M3 7H6" class="icon-stroke" />
+  </g>
+  <text x="577" y="351" class="node-title">Controllers</text>
+  <text x="552" y="376" class="node-copy">Validation &amp; orchestration</text>
+
+  <text x="590" y="438" class="node-title" text-anchor="middle">Services</text>
+  <text x="590" y="460" class="node-copy" text-anchor="middle">Business logic</text>
+  <text x="710" y="438" class="node-title" text-anchor="middle">Models</text>
+  <text x="710" y="460" class="node-copy" text-anchor="middle">Domain data</text>
+
+  <text x="552" y="532" class="micro-label">STATE &amp; CACHE</text>
+  <rect x="552" y="546" width="92" height="30" rx="9" class="node" />
+  <ellipse cx="570" cy="555" rx="8" ry="3.5" fill="none" stroke="#db2777" stroke-width="1.5" />
+  <path d="M562 555V566C562 568 566 570 570 570S578 568 578 566V555" fill="none" stroke="#db2777" stroke-width="1.5" />
+  <text x="588" y="562" class="provider-label" dominant-baseline="middle">Database</text>
+  <rect x="654" y="546" width="94" height="30" rx="9" class="node" />
+  <path d="M666 554H680V568H666ZM669 557H677V565H669Z" fill="none" stroke="#db2777" stroke-width="1.4" />
+  <text x="686" y="562" class="provider-label" dominant-baseline="middle">Redis</text>
+
+  <!-- Relay pipeline -->
+  <g filter="url(#node-shadow)">
+    <rect x="836" y="238" width="148" height="74" rx="13" class="node" />
+    <rect x="836" y="346" width="148" height="74" rx="13" class="node" />
+    <rect x="836" y="454" width="148" height="74" rx="13" class="node" />
+  </g>
+
+  <circle cx="858" cy="262" r="10" class="relay-accent" />
+  <path d="M854 258H862M854 262H860M854 266H858" stroke="#fff" stroke-width="1.6" stroke-linecap="round" />
+  <text x="877" y="265" class="node-title">Relay router</text>
+  <text x="852" y="291" class="node-copy">Channel selection</text>
+
+  <path d="M910 312V340" class="internal-line" />
+
+  <circle cx="858" cy="370" r="10" class="relay-accent" />
+  <path d="M853 370H863M858 365V375" stroke="#fff" stroke-width="1.6" stroke-linecap="round" />
+  <text x="877" y="373" class="node-title">Handlers</text>
+  <text x="852" y="399" class="node-copy">Request lifecycle</text>
+
+  <path d="M910 420V448" class="internal-line" />
+
+  <circle cx="858" cy="478" r="10" class="relay-accent" />
+  <path d="M853 474L863 482M863 474L853 482" stroke="#fff" stroke-width="1.6" stroke-linecap="round" />
+  <text x="877" y="481" class="node-title">Adapters</text>
+  <text x="852" y="507" class="node-copy">Protocol conversion</text>
+
+  <rect x="836" y="554" width="148" height="38" rx="11" class="soft-node" />
+  <text x="910" y="568" class="micro-label" text-anchor="middle">NORMALIZED OUTPUT</text>
+  <text x="910" y="584" class="node-copy" text-anchor="middle">Text · Image · Audio</text>
+
+  <!-- Provider network -->
+  <g>
+    <rect x="1056" y="238" width="76" height="54" rx="11" class="soft-node" />
+    <rect x="1140" y="238" width="76" height="54" rx="11" class="soft-node" />
+    <rect x="1056" y="304" width="76" height="54" rx="11" class="soft-node" />
+    <rect x="1140" y="304" width="76" height="54" rx="11" class="soft-node" />
+    <rect x="1056" y="370" width="76" height="54" rx="11" class="soft-node" />
+    <rect x="1140" y="370" width="76" height="54" rx="11" class="soft-node" />
+    <rect x="1056" y="436" width="76" height="54" rx="11" class="soft-node" />
+    <rect x="1140" y="436" width="76" height="54" rx="11" class="soft-node" />
+  </g>
+
+  <circle cx="1094" cy="253" r="5" fill="#10a37f" />
+  <text x="1094" y="276" class="provider-label" text-anchor="middle">OpenAI</text>
+  <circle cx="1178" cy="253" r="5" fill="#d97757" />
+  <text x="1178" y="276" class="provider-label" text-anchor="middle">Claude</text>
+
+  <circle cx="1094" cy="319" r="5" fill="#4285f4" />
+  <text x="1094" y="342" class="provider-label" text-anchor="middle">Gemini</text>
+  <circle cx="1178" cy="319" r="5" fill="#4d6bfe" />
+  <text x="1178" y="342" class="provider-label" text-anchor="middle">DeepSeek</text>
+
+  <circle cx="1094" cy="385" r="5" fill="#615ced" />
+  <text x="1094" y="408" class="provider-label" text-anchor="middle">Qwen</text>
+  <circle cx="1178" cy="385" r="5" fill="#2563eb" />
+  <text x="1178" y="408" class="provider-label" text-anchor="middle">Zhipu</text>
+
+  <circle cx="1094" cy="451" r="5" fill="#0ea5e9" />
+  <text x="1094" y="474" class="provider-label" text-anchor="middle">Azure</text>
+  <circle cx="1178" cy="451" r="5" fill="#059669" />
+  <text x="1178" y="474" class="provider-label" text-anchor="middle">Others</text>
+
+  <rect x="1056" y="520" width="160" height="72" rx="12" class="provider-tint" />
+  <text x="1136" y="544" class="micro-label" text-anchor="middle">EXTENSIBLE CHANNELS</text>
+  <text x="1136" y="567" class="node-copy" text-anchor="middle">Add providers without</text>
+  <text x="1136" y="584" class="node-copy" text-anchor="middle">changing client code</text>
+
+  <!-- Cross-layer flow -->
+  <path d="M224 360H252" class="flow-line" />
+  <path d="M480 360H512" class="flow-line" />
+  <path d="M780 360H812" class="flow-line" />
+  <path d="M1000 360H1032" class="flow-line" />
+
+  <text x="242" y="343" class="micro-label" text-anchor="middle">HTTPS</text>
+  <text x="500" y="343" class="micro-label" text-anchor="middle">API</text>
+  <text x="800" y="343" class="micro-label" text-anchor="middle">ROUTE</text>
+  <text x="1020" y="343" class="micro-label" text-anchor="middle">CALL</text>
+
+  <path d="M650 396V408" class="internal-line" />
+  <path d="M590 478V502" class="data-line" />
+  <path d="M710 478V502" class="data-line" />
+
+  <!-- Deployment foundation -->
+  <rect x="48" y="662" width="1184" height="110" rx="18" class="foundation" />
+  <g transform="translate(70 683)">
+    <rect width="40" height="40" rx="11" fill="url(#brand-gradient)" />
+    <g transform="translate(10 10)" class="white-icon">
+      <path d="M2 5H7V10H2ZM8 5H13V10H8ZM14 5H19V10H14ZM5 11H10V16H5ZM11 11H16V16H11M1 16C3.5 19 8 20 12 19.5 16 19 19 16.5 20 13" class="icon-stroke" />
+    </g>
+  </g>
+  <text x="124" y="696" class="foundation-title">Deployment foundation</text>
+  <text x="124" y="721" class="node-copy">Portable, self-hosted, and ready to scale</text>
+
+  <g transform="translate(385 685)">
+    <rect width="94" height="36" rx="10" class="chip" />
+    <circle cx="17" cy="18" r="5" fill="#2496ed" />
+    <text x="30" y="18" class="chip-text" dominant-baseline="middle">Docker</text>
+  </g>
+  <g transform="translate(491 685)">
+    <rect width="142" height="36" rx="10" class="chip" />
+    <circle cx="17" cy="18" r="5" fill="#8b5cf6" />
+    <text x="30" y="18" class="chip-text" dominant-baseline="middle">Docker Compose</text>
+  </g>
+  <g transform="translate(645 685)">
+    <rect width="108" height="36" rx="10" class="chip" />
+    <circle cx="17" cy="18" r="5" fill="#ec4899" />
+    <text x="30" y="18" class="chip-text" dominant-baseline="middle">Self-hosted</text>
+  </g>
+  <g transform="translate(765 685)">
+    <rect width="126" height="36" rx="10" class="chip" />
+    <circle cx="17" cy="18" r="5" fill="#f59e0b" />
+    <text x="30" y="18" class="chip-text" dominant-baseline="middle">Horizontal scale</text>
+  </g>
+  <g transform="translate(903 685)">
+    <rect width="118" height="36" rx="10" class="chip" />
+    <circle cx="17" cy="18" r="5" fill="#22c55e" />
+    <text x="30" y="18" class="chip-text" dominant-baseline="middle">Observability</text>
+  </g>
+  <g transform="translate(1033 685)">
+    <rect width="177" height="36" rx="10" class="chip" />
+    <circle cx="17" cy="18" r="5" fill="#06b6d4" />
+    <text x="30" y="18" class="chip-text" dominant-baseline="middle">Database + Redis</text>
+  </g>
+
+  <text x="385" y="744" class="node-copy">One deployment · Multi-tenant management · Unified billing · Secure access control</text>
+</svg>

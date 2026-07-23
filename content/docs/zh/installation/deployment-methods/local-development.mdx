@@ -12,7 +12,8 @@ title: 本地开发部署
 - **Node.js** 18 或更高版本（前端开发）
 - **Bun** 最新版本（推荐的包管理器，比 npm/yarn 快 25 倍）
 - **Git**（版本控制）
-- **MySQL**（可选，默认使用 SQLite）
+- **PostgreSQL**（推荐的外部数据库）
+- **MySQL**（可选的兼容数据库）
 - **Redis**（可选，用于提升性能）
 - **Visual Studio Code** 或其他代码编辑器
 
@@ -49,13 +50,13 @@ cp .env.example .env
 
 ```bash
 PORT=3000
-SQL_DSN=root:password@tcp(localhost:3306)/new-api   # 如使用MySQL，取消注释并修改
+# SQL_DSN=postgresql://newapi:password@localhost:5432/new-api  # 推荐使用 PostgreSQL，取消注释并修改
 # REDIS_CONN_STRING=redis://localhost:6379         # 如使用Redis，取消注释并修改
 ```
 
 <Callout type="info" title="提示">
-  如果不配置 `SQL_DSN`，系统将默认使用 SQLite 数据库，存储在 `one-api.db`
-  文件中。
+  如果不配置 `SQL_DSN`，系统将默认使用存储在 `one-api.db` 中的 SQLite。
+  SQLite 适合本地开发和测试；需要外部数据库时优先推荐 PostgreSQL。
 </Callout>
 
 ### 运行后端服务

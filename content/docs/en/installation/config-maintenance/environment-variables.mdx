@@ -21,30 +21,40 @@ This document provides all environment variables supported by Ace Hub and their 
 
 | Environment Variable          | Description                                    | Default Value             | Example                                                                                                                             |
 | ----------------------------- | ---------------------------------------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `SQL_DSN`                     | Database connection string                     | SQLite (`one-api.db`)     | MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` \| PostgreSQL: `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` |
+| `SQL_DSN`                     | Database connection string                     | SQLite (`one-api.db`)     | PostgreSQL (recommended): `SQL_DSN=postgresql://root:123456@postgres:5432/new-api` \| MySQL: `SQL_DSN=root:123456@tcp(localhost:3306)/new-api` |
 | `SQL_MAX_IDLE_CONNS`          | Maximum idle connections in connection pool    | `100`                     | `SQL_MAX_IDLE_CONNS=50`                                                                                                          |
 | `SQL_MAX_OPEN_CONNS`          | Maximum open connections in connection pool    | `1000`                    | `SQL_MAX_OPEN_CONNS=500`                                                                                                         |
 | `SQL_MAX_LIFETIME`            | Maximum connection lifetime (seconds)          | `60`                      | `SQL_MAX_LIFETIME=120`                                                                                                          |
-| `LOG_SQL_DSN`                 | Separate database connection string for log table | -                         | `LOG_SQL_DSN=root:123456@tcp(localhost:3306)/oneapi_logs`                                                                        |
+| `LOG_SQL_DSN`                 | Separate database connection string for log table | -                         | `LOG_SQL_DSN=postgresql://root:123456@postgres:5432/oneapi_logs`                                                                 |
 | `SQLITE_PATH`                 | SQLite database path                           | `one-api.db`              | `SQLITE_PATH=/var/lib/new-api/new-api.db`                                                                                        |
+
+<Callout type="info" title="Database recommendation">
+  PostgreSQL is preferred for production. MySQL remains a compatible option;
+  SQLite, used when `SQL_DSN` is unset, is better suited to local development
+  and testing.
+</Callout>
 
 ## Cache Configuration
 
 | Environment Variable          | Description                                                  | Default Value | Example                                                    |
 | ----------------------------- | ------------------------------------------------------------ | ------------- | ---------------------------------------------------------- |
-| `REDIS_CONN_STRING`           | Redis connection string                                      | -             | `REDIS_CONN_STRING=redis://default:redispw@localhost:6379` |
+| `REDIS_CONN_STRING`           | One Redis-compatible connection endpoint; include credentials in the URI | -             | `REDIS_CONN_STRING=redis://default:redispw@localhost:6379` |
 | `REDIS_POOL_SIZE`             | Redis connection pool size                                   | `10`          | `REDIS_POOL_SIZE=20`                                      |
 | `MEMORY_CACHE_ENABLED`        | Whether to enable memory cache (automatically enabled when Redis is enabled) | `false`       | `MEMORY_CACHE_ENABLED=true`                                |
-| `SYNC_FREQUENCY`              | Cache and database synchronization frequency (seconds)       | `60`          | `SYNC_FREQUENCY=120`                                       |
+| `SYNC_FREQUENCY`              | Cache synchronization frequency and maximum Session-cache stale window with independent Redis (seconds) | `60` | `SYNC_FREQUENCY=120` |
 | `BATCH_UPDATE_ENABLED`        | Enable database batch update aggregation                     | `false`       | `BATCH_UPDATE_ENABLED=true`                                |
 | `BATCH_UPDATE_INTERVAL`       | Batch update aggregation interval (seconds)                  | `5`           | `BATCH_UPDATE_INTERVAL=10`                                 |
+
+`REDIS_CONN_STRING` must point to one Redis-compatible endpoint. Ace Hub does not natively parse Redis Cluster or Sentinel node lists. For Redis high availability, use a managed service or proxy that exposes one compatible endpoint.
+
+The database is authoritative for dashboard Sessions. Redis caches each Session for the smaller of its remaining lifetime and the effective `SYNC_FREQUENCY`, and reads do not renew that TTL. With independent Redis per node, Session revocation and version changes therefore converge after a database fallback within this window. Delayed active-cache fills keep only the unused portion of their original database-observation window.
 
 ## Multi-node and Security Configuration
 
 | Environment Variable              | Description                                                  | Default Value | Example                                        |
 | --------------------------------- | ------------------------------------------------------------ | ------------- | ------------------------------------------- |
-| `SESSION_SECRET`                  | Session secret (required for multi-machine deployment)       | -             | `SESSION_SECRET=your_session_secret`        |
-| `CRYPTO_SECRET`                   | Encryption secret (encrypts database content, defaults to SESSION_SECRET) | -             | `CRYPTO_SECRET=your_crypto_secret`          |
+| `SESSION_SECRET`                  | Session secret; must be identical on every application node  | -             | `SESSION_SECRET=your_session_secret`        |
+| `CRYPTO_SECRET`                   | HMAC secret for cache keys; nodes sharing Redis must use the same effective value | Defaults to `SESSION_SECRET` | `CRYPTO_SECRET=your_crypto_secret` |
 | `FRONTEND_BASE_URL`               | Frontend base URL (used by slave nodes, redirects unmatched routes to this address) | -             | `FRONTEND_BASE_URL=https://<your-newapi-domain>` |
 | `NODE_TYPE`                       | Node type                                                    | `master`      | `NODE_TYPE=slave`                           |
 | `TLS_INSECURE_SKIP_VERIFY`        | Globally skip TLS certificate verification                   | `false`       | `TLS_INSECURE_SKIP_VERIFY=true`             |
@@ -52,6 +62,10 @@ This document provides all environment variables supported by Ace Hub and their 
 
 <Callout type="warn" title="SESSION_SECRET Notes">
   `SESSION_SECRET` cannot be set to `random_string`, otherwise the program will refuse to start. All nodes must use the same secret for multi-machine deployment.
+</Callout>
+
+<Callout type="info" title="Redis Topology">
+  Redis may be shared by all nodes, deployed independently per node, or omitted. Shared Redis normally propagates Session revocation immediately and shares Redis-backed rate-limit quotas. Independent Redis converges within the effective `SYNC_FREQUENCY`, but each node has a separate rate-limit quota. Without Redis, Session validation reads the database and rate limiting uses node-local memory.
 </Callout>
 
 <Callout type="info" title="Cluster Deployment">
@@ -227,19 +241,19 @@ The following environment variables have been deprecated. Please use the corresp
 
 ## Multi-machine Deployment Example
 
-In multi-machine deployment scenarios, the following environment variables must be set:
+Multi-machine deployments must use the same database and the same `SESSION_SECRET`. Redis may be shared by all nodes, deployed independently per node, or omitted; see the [Cluster Deployment Guide](/en/docs/installation/deployment-methods/cluster-deployment) for the behavioral differences.
 
 ### Master Node Configuration
 
 ```bash
 # Database Configuration - Use a remote database
-SQL_DSN=root:password@tcp(db-server:3306)/oneapi
+SQL_DSN=postgresql://newapi:password@db-server:5432/oneapi
 
 # Security Configuration
 SESSION_SECRET=your_unique_session_secret
 CRYPTO_SECRET=your_unique_crypto_secret
 
-# Redis Cache Configuration
+# Redis Cache Configuration (may instead use a node-local Redis, or be omitted)
 REDIS_CONN_STRING=redis://default:password@redis-server:6379
 ```
 
@@ -247,14 +261,14 @@ REDIS_CONN_STRING=redis://default:password@redis-server:6379
 
 ```bash
 # Database Configuration - Use the same remote database
-SQL_DSN=root:password@tcp(db-server:3306)/oneapi
+SQL_DSN=postgresql://newapi:password@db-server:5432/oneapi
 
-# Security Configuration - Use the same secret as the master node
+# Security Configuration - SESSION_SECRET must match the master
 SESSION_SECRET=your_unique_session_secret
-CRYPTO_SECRET=your_unique_crypto_secret
+CRYPTO_SECRET=your_unique_crypto_secret # Must match when Redis is shared
 
-# Redis Cache Configuration - Use the same Redis as the master node
-REDIS_CONN_STRING=redis://default:password@redis-server:6379
+# Redis Cache Configuration - May match the master or point to this node's independent Redis
+REDIS_CONN_STRING=redis://default:password@redis-slave-node:6379
 
 # Node Type Setting
 NODE_TYPE=slave
@@ -267,7 +281,7 @@ SYNC_FREQUENCY=60
 ```
 
 <Callout type="info" title="Complete Cluster Configuration">
-  This is just a basic multi-node configuration example. For complete cluster deployment configuration, architecture description, and best practices, please refer to the [Cluster Deployment Guide](/en/docs/installation/deployment-methods/cluster-deployment).
+  This example shows independent Redis instances. To share Redis, use the same `REDIS_CONN_STRING` on both nodes. Without Redis, Session validation reads the shared database directly. For complete consistency semantics and deployment guidance, see the [Cluster Deployment Guide](/en/docs/installation/deployment-methods/cluster-deployment).
 </Callout>
 
 ## Environment Variable Example in Docker Compose
@@ -280,7 +294,7 @@ services:
     image: calciumion/new-api:latest
     environment:
       - TZ=Asia/Shanghai
-      - SQL_DSN=root:123456@tcp(mysql:3306)/oneapi
+      - SQL_DSN=postgresql://newapi:123456@postgres:5432/oneapi
       - REDIS_CONN_STRING=redis://default:redispw@redis:6379
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret

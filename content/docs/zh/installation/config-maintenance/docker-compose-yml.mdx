@@ -6,7 +6,7 @@ title: Docker Compose 配置说明
 
 ## 基本配置结构
 
-Docker Compose配置文件 `docker-compose.yml` 定义了Ace Hub服务及其依赖服务（如MySQL、Redis）的部署方式。
+Docker Compose 配置文件 `docker-compose.yml` 定义了 Ace Hub 及其依赖服务的部署方式。标准配置优先使用 PostgreSQL 和 Redis，MySQL 作为兼容选项保留。
 
 ## 标准配置（推荐生产环境）
 
@@ -49,7 +49,7 @@ services:
       - BATCH_UPDATE_ENABLED=true # 是否启用批量更新 batch update enabled
     #      - STREAMING_TIMEOUT=300  # 流模式无响应超时时间，单位秒，默认120秒，如果出现空补全可以尝试改为更大值 Streaming timeout in seconds, default is 120s. Increase if experiencing empty completions
     #      - SESSION_SECRET=random_string  # 多机部署时设置，必须修改这个随机字符串！！ multi-node deployment, set this to a random string!!!!!!!
-    #      - SYNC_FREQUENCY=60  # Uncomment if regular database syncing is needed
+    #      - SYNC_FREQUENCY=60  # 缓存同步频率；独立 Redis 部署下也是 Session 最大陈旧窗口
 
     depends_on:
       - redis
@@ -140,18 +140,30 @@ Ace Hub支持多种环境变量配置，以下是常用的几个：
 
 | 环境变量            | 说明                   | 示例                                  |
 | ------------------- | ---------------------- | ------------------------------------- |
-| `SQL_DSN`           | 数据库连接字符串       | `root:123456@tcp(mysql:3306)/new-api` |
+| `SQL_DSN`           | 数据库连接字符串       | `postgresql://root:123456@postgres:5432/new-api` |
 | `REDIS_CONN_STRING` | Redis连接字符串        | `redis://redis`                       |
+| `REDIS_POOL_SIZE`   | Redis连接池大小        | `10`                                  |
 | `TZ`                | 时区设置               | `Asia/Shanghai`                       |
 | `SESSION_SECRET`    | 会话密钥(多机部署必须) | `your_random_string`                  |
+| `CRYPTO_SECRET`     | 缓存键 HMAC 密钥（共享 Redis 的节点必须一致） | 默认跟随 `SESSION_SECRET` |
 | `NODE_TYPE`         | 节点类型(主/从)        | `master`或`slave`                     |
-| `SYNC_FREQUENCY`    | 同步频率(秒)           | `60`                                  |
+| `SYNC_FREQUENCY`    | 缓存同步频率及独立 Redis 下的 Session 最大陈旧窗口(秒) | `60` |
 
 更完整的环境变量列表请参考[环境变量配置指南](/zh/docs/installation/config-maintenance/environment-variables)。
 
 ## 多节点部署配置
 
-对于多节点部署场景，主节点和从节点的配置略有不同：
+多节点部署必须共享同一个数据库，并在所有节点使用相同的 `SESSION_SECRET`。Redis 可以共享、每节点独立部署或完全省略：
+
+| Redis 拓扑 | Session 状态传播 | 限流语义 |
+| --- | --- | --- |
+| 共享 Redis | 撤销和版本发布通常即时生效 | Redis 限流额度在节点间共享 |
+| 每节点独立 Redis | 最迟在有效 `SYNC_FREQUENCY` 后回源数据库收敛；版本轮换期间新 Token 可能短暂返回 401 | 各节点独立计数 |
+| 不使用 Redis | Session 校验直接读取数据库 | 使用各节点内存限流 |
+
+数据库是 Session 状态的唯一权威来源，Session 活跃上限和签发窗口计数始终跨节点共享。Redis 中 Session Hash 的 TTL 取 Session 剩余寿命与有效 `SYNC_FREQUENCY` 的较小值，读取不会续期。延迟完成的 active 缓存回写只使用数据库读取时观察窗口的剩余部分，不会在撤销 tombstone 过期后重新获得完整 TTL。
+
+下面示例使用每节点独立 Redis；若要共享 Redis，请填写相同地址；若不使用 Redis，请删除 `REDIS_CONN_STRING`。
 
 ### 主节点配置
 
@@ -164,8 +176,8 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api
-      - REDIS_CONN_STRING=redis://redis
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api
+      - REDIS_CONN_STRING=redis://master-redis # 可改为共享 Redis，或删除以禁用 Redis
       - SESSION_SECRET=your_unique_session_secret
       - CRYPTO_SECRET=your_unique_crypto_secret
       - TZ=Asia/Shanghai
@@ -184,10 +196,10 @@ services:
     ports:
       - '3001:3000' # 注意端口映射不同
     environment:
-      - SQL_DSN=root:123456@tcp(mysql:3306)/new-api
-      - REDIS_CONN_STRING=redis://redis
+      - SQL_DSN=postgresql://newapi:123456@your-db-host:5432/new-api
+      - REDIS_CONN_STRING=redis://slave-redis # 可与主节点相同、使用本节点 Redis，或删除
       - SESSION_SECRET=your_unique_session_secret # 必须与主节点相同
-      - CRYPTO_SECRET=your_unique_crypto_secret # 必须与主节点相同
+      - CRYPTO_SECRET=your_unique_crypto_secret # 共享 Redis 时必须与主节点相同
       - NODE_TYPE=slave # 设置为从节点
       - SYNC_FREQUENCY=60
       - TZ=Asia/Shanghai
