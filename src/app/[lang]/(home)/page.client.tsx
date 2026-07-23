@@ -87,6 +87,15 @@ function detectShaderProfile(): ShaderProfile {
   };
 }
 
+// Light fallback used for SSR + the first client render so theme-dependent
+// styles stay identical until next-themes has mounted.
+const LIGHT_SHADER_COLORS = ['#22D3EE', '#A78BFA', '#F9A8D4', '#DBEAFE20'];
+const DARK_SHADER_COLORS = ['#06B6D4', '#8B5CF6', '#EC4899', '#1E3A8A00'];
+const LIGHT_FALLBACK_BG =
+  'radial-gradient(1200px 800px at 20% 15%, rgba(34,211,238,.25), transparent 60%), radial-gradient(1000px 700px at 70% 25%, rgba(167,139,250,.22), transparent 55%), radial-gradient(900px 700px at 55% 70%, rgba(249,168,212,.18), transparent 60%)';
+const DARK_FALLBACK_BG =
+  'radial-gradient(1200px 800px at 20% 15%, rgba(6,182,212,.28), transparent 60%), radial-gradient(1000px 700px at 70% 25%, rgba(139,92,246,.24), transparent 55%), radial-gradient(900px 700px at 55% 70%, rgba(236,72,153,.18), transparent 60%)';
+
 export function Hero() {
   const { resolvedTheme } = useTheme();
   const [showShaders, setShowShaders] = useState(false);
@@ -96,13 +105,16 @@ export function Hero() {
   // Avoid hydration mismatch: the first client render must match SSR output.
   const [profile, setProfile] = useState<ShaderProfile>(DEFAULT_SHADER_PROFILE);
 
+  // next-themes resolves from localStorage / prefers-color-scheme only on the
+  // client. Until mounted, always use the light palette so SSR HTML matches.
+  const isDark = mounted && resolvedTheme === 'dark';
+
   const shaderColors = useMemo(
-    () =>
-      resolvedTheme === 'dark'
-        ? ['#06B6D4', '#8B5CF6', '#EC4899', '#1E3A8A00']
-        : ['#22D3EE', '#A78BFA', '#F9A8D4', '#DBEAFE20'],
-    [resolvedTheme]
+    () => (isDark ? DARK_SHADER_COLORS : LIGHT_SHADER_COLORS),
+    [isDark]
   );
+
+  const fallbackBackground = isDark ? DARK_FALLBACK_BG : LIGHT_FALLBACK_BG;
 
   useEffect(() => {
     setMounted(true);
@@ -152,12 +164,7 @@ export function Hero() {
       {/* Lightweight fallback while shader bundle loads */}
       <div
         className="absolute inset-0"
-        style={{
-          background:
-            resolvedTheme === 'dark'
-              ? 'radial-gradient(1200px 800px at 20% 15%, rgba(6,182,212,.28), transparent 60%), radial-gradient(1000px 700px at 70% 25%, rgba(139,92,246,.24), transparent 55%), radial-gradient(900px 700px at 55% 70%, rgba(236,72,153,.18), transparent 60%)'
-              : 'radial-gradient(1200px 800px at 20% 15%, rgba(34,211,238,.25), transparent 60%), radial-gradient(1000px 700px at 70% 25%, rgba(167,139,250,.22), transparent 55%), radial-gradient(900px 700px at 55% 70%, rgba(249,168,212,.18), transparent 60%)',
-        }}
+        style={{ background: fallbackBackground }}
       />
 
       {showShaders && (
@@ -175,7 +182,7 @@ export function Hero() {
         />
       )}
 
-      {/* Logo */}
+      {/* Logo / dashboard only after mount — theme-dependent assets */}
       {mounted && (
         <div
           className={cn(
@@ -200,7 +207,7 @@ export function Hero() {
       {mounted && (
         <Image
           src={
-            resolvedTheme === 'dark'
+            isDark
               ? '/assets/dashboard-dark.png'
               : '/assets/dashboard-light.png'
           }
