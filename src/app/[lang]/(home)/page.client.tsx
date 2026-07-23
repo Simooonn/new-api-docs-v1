@@ -99,7 +99,6 @@ const DARK_FALLBACK_BG =
 export function Hero() {
   const { resolvedTheme } = useTheme();
   const [showShaders, setShowShaders] = useState(false);
-  const [imageReady, setImageReady] = useState(false);
   const [logoReady, setLogoReady] = useState(false);
   const [mounted, setMounted] = useState(false);
   // Avoid hydration mismatch: the first client render must match SSR output.
@@ -182,7 +181,7 @@ export function Hero() {
         />
       )}
 
-      {/* Logo / dashboard only after mount — theme-dependent assets */}
+      {/* Logo only after mount — avoids hydration mismatch for theme-ready UI */}
       {mounted && (
         <div
           className={cn(
@@ -202,28 +201,6 @@ export function Hero() {
             priority
           />
         </div>
-      )}
-
-      {mounted && (
-        <Image
-          src={
-            isDark
-              ? '/assets/dashboard-dark.png'
-              : '/assets/dashboard-light.png'
-          }
-          alt="dashboard-preview"
-          width={1200}
-          height={800}
-          className={cn(
-            'absolute top-[460px] left-[20%] max-w-[1200px] rounded-xl border-2',
-            'lg:top-[400px]',
-            imageReady ? 'animate-in fade-in duration-400' : 'invisible'
-          )}
-          onLoad={() => setImageReady(true)}
-          loading="lazy"
-          fetchPriority="low"
-          sizes="(min-width: 1024px) 1200px, 100vw"
-        />
       )}
     </>
   );
