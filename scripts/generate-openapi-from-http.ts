@@ -524,8 +524,9 @@ async function main() {
 
     const sec = buildSecurity(ep, securitySchemes);
 
-    // Ace Hub API base URL used by docs playground / curl samples.
+    // Keep in sync with src/lib/api-base.ts (DEFAULT_OPENAPI_SERVER_URL).
     // Without servers, fumadocs-openapi falls back to `/` (docs site origin).
+    // Do not hand-edit openapi/generated for server URLs — regenerate instead.
     const apiBaseUrl =
       process.env.OPENAPI_SERVER_URL?.trim() || 'https://www.acetoken.top';
 

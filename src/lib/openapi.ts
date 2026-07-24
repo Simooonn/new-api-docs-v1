@@ -2,6 +2,8 @@ import { createOpenAPI } from 'fumadocs-openapi/server';
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
+import { ensureOpenApiServers, getOpenApiServerUrl } from '@/lib/api-base';
+
 async function walkJsonFiles(dir: string): Promise<string[]> {
   const out: string[] = [];
   async function walk(current: string) {
@@ -36,8 +38,8 @@ export const openapi = createOpenAPI({
         'No generated OpenAPI files found in ./openapi/generated. Run: bun run generate:openapi'
       );
     }
-    const apiBaseUrl =
-      process.env.OPENAPI_SERVER_URL?.trim() || 'https://www.acetoken.top';
+    // Global runtime pin: docs samples must hit the API host, not the docs site.
+    const apiBaseUrl = getOpenApiServerUrl();
     const entries = await Promise.all(
       files.map(async (p) => {
         const raw = await readFile(p, 'utf8');
@@ -45,14 +47,7 @@ export const openapi = createOpenAPI({
           servers?: Array<{ url?: string; description?: string }>;
           [key: string]: unknown;
         };
-        // Ensure curl/playground samples target the Ace Hub API host, not the docs site.
-        const servers = Array.isArray(doc.servers) ? doc.servers : [];
-        const hasApiHost = servers.some(
-          (s) => typeof s?.url === 'string' && s.url.includes('www.acetoken.top')
-        );
-        if (!hasApiHost) {
-          doc.servers = [{ url: apiBaseUrl, description: 'Ace Hub API' }];
-        }
+        ensureOpenApiServers(doc, apiBaseUrl);
         return [p, doc] as const;
       })
     );
