@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "根据查询对文档列表进行相关性重排序"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "重排序（Rerank）"

@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "Gemini 图片生成"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "图像（Images）/原生Gemini格式"

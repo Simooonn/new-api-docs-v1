@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "Anthropic Claude Messages API 格式的请求。\n需要在请求头中包含 `anthropic-version`。\n"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "聊天（Chat）"

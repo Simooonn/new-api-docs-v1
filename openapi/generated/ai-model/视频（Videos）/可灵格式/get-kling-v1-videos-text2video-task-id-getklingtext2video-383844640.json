@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "查询 Kling 文生视频任务的状态和结果。"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "视频（Videos）/可灵格式"

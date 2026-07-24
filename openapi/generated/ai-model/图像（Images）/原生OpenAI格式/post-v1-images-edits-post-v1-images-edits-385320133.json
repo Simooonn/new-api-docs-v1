@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "在给定原始图像和提示的情况下创建编辑或扩展图像。\n\n"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "图像（Images）/原生OpenAI格式"

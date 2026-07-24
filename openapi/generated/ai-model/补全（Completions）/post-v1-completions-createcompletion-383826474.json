@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "基于给定提示创建文本补全"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "补全（Completions）"

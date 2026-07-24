@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "此接口尚未实现"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "未实现（Unimplemented）/微调（Fine-tuning）"

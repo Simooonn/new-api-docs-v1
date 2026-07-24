@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "Gemini 音频生成接口。\n可使用gemini-2.5-flash-preview-tts等模型"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "音频（Audio）"

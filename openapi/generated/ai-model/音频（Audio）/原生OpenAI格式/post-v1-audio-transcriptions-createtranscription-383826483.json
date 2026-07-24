@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "将音频转换为文本"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "音频（Audio）/原生OpenAI格式"

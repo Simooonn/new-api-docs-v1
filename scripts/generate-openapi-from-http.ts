@@ -524,6 +524,11 @@ async function main() {
 
     const sec = buildSecurity(ep, securitySchemes);
 
+    // Ace Hub API base URL used by docs playground / curl samples.
+    // Without servers, fumadocs-openapi falls back to `/` (docs site origin).
+    const apiBaseUrl =
+      process.env.OPENAPI_SERVER_URL?.trim() || 'https://www.acetoken.top';
+
     const doc = {
       openapi: '3.1.0',
       info: {
@@ -531,6 +536,7 @@ async function main() {
         version: '1.0.0',
         description: ep.description || undefined,
       },
+      servers: [{ url: apiBaseUrl, description: 'Ace Hub API' }],
       tags: tags.map((name) => ({ name })),
       ...(sec.securitySchemes
         ? { components: { securitySchemes: sec.securitySchemes } }

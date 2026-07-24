@@ -5,6 +5,12 @@
     "version": "1.0.0",
     "description": "将文本转换为向量嵌入"
   },
+  "servers": [
+    {
+      "url": "https://www.acetoken.top",
+      "description": "Ace Hub API"
+    }
+  ],
   "tags": [
     {
       "name": "嵌入（Embeddings）"

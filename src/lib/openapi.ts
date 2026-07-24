@@ -36,10 +36,24 @@ export const openapi = createOpenAPI({
         'No generated OpenAPI files found in ./openapi/generated. Run: bun run generate:openapi'
       );
     }
+    const apiBaseUrl =
+      process.env.OPENAPI_SERVER_URL?.trim() || 'https://www.acetoken.top';
     const entries = await Promise.all(
       files.map(async (p) => {
         const raw = await readFile(p, 'utf8');
-        return [p, JSON.parse(raw)] as const;
+        const doc = JSON.parse(raw) as {
+          servers?: Array<{ url?: string; description?: string }>;
+          [key: string]: unknown;
+        };
+        // Ensure curl/playground samples target the Ace Hub API host, not the docs site.
+        const servers = Array.isArray(doc.servers) ? doc.servers : [];
+        const hasApiHost = servers.some(
+          (s) => typeof s?.url === 'string' && s.url.includes('www.acetoken.top')
+        );
+        if (!hasApiHost) {
+          doc.servers = [{ url: apiBaseUrl, description: 'Ace Hub API' }];
+        }
+        return [p, doc] as const;
       })
     );
     return Object.fromEntries(entries);
