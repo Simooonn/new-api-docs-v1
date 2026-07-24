@@ -1,5 +1,9 @@
 import { HomeLayout } from 'fumadocs-ui/layouts/home';
-import { baseOptions, linkItems } from '@/lib/layout.shared';
+import {
+  baseOptions,
+  getExternalNavLinks,
+  linkItems,
+} from '@/lib/layout.shared';
 import {
   NavbarMenu,
   NavbarMenuContent,
@@ -113,6 +117,8 @@ export default async function Layout({
       <HomeLayout
         {...baseOptions(lang)}
         links={[
+          // Main site: Home / Console / Model Plaza
+          ...getExternalNavLinks(lang),
           // Mobile menu
           {
             type: 'menu',
